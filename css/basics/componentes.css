@@ -1,0 +1,48 @@
+/* Botones y enlaces usados por distintas secciones. */
+.call-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 3rem;
+    padding: var(--espacio-8) var(--espacio-16);
+    border: var(--grosor-linea) solid var(--c-rosa-calmo);
+    border-radius: var(--radio-full);
+    background: var(--c-rosa-calmo);
+    color: var(--c-sobre-rosa);
+    font-size: var(--fs-cuerpo);
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    overflow-wrap: anywhere;
+    transition: background-color var(--duración-rapida) var(--curva-interaccion),
+                border-color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.call-button:hover {
+    background-color: var(--c-rosa-hover);
+    border-color: var(--c-rosa-hover);
+}
+
+.call-button:focus-visible {
+    outline-color: var(--c-blanco);
+}
+
+/* Enlaces de lectura: contraste suficiente y subrayado visible. */
+.education a:not(.call-button),
+.project-card a:not(.call-button) {
+    color: var(--c-rosa-calmo);
+    text-decoration: underline;
+    text-decoration-thickness: var(--grosor-linea);
+    text-underline-offset: .25em;
+    transition: color var(--duración-rapida) var(--curva-interaccion),
+                text-decoration-color var(--duración-rapida) var(--curva-interaccion),
+                text-underline-offset var(--duración-rapida) var(--curva-interaccion);
+}
+
+.education a:not(.call-button):hover {
+    color: var(--c-rosa-hover);
+    text-decoration-color: var(--c-rosa-hover);
+    text-underline-offset: .36em;
+}

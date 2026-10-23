@@ -1,0 +1,30 @@
+/*
+ * Colores de uso en componentes. Los tonos de lectura y el rosa atenuado
+ * salen de las bases de colores.css; el rosa vivo queda para el foco.
+ */
+:root {
+    --c-pagina: color-mix(in srgb, var(--c-fondo) 96%, var(--c-texto));
+    --c-panel: color-mix(in srgb, var(--c-superficie) 95%, var(--c-texto));
+    --c-blanco: color-mix(in srgb, var(--c-texto) 88%, var(--c-fondo));
+    --c-gris: var(--c-texto-suave);
+    --c-gris-lectura: color-mix(in srgb, var(--c-gris) 60%, var(--c-blanco));
+    --c-rosa-vivo: var(--c-rosa);
+    --c-rosa-calmo: color-mix(in srgb, var(--c-rosa-suave) 54%, var(--c-texto));
+    --c-rosa-oscuro: var(--c-rosa-hondo);
+    --c-sobre-rosa: var(--c-sobre-acento);
+
+    --c-linea: color-mix(in srgb, var(--c-blanco) 10%, transparent);
+    --c-rosa-velo: color-mix(in srgb, var(--c-rosa-suave) 5%, var(--c-panel));
+    --c-rosa-foto: color-mix(in srgb, var(--c-rosa-calmo) 42%, var(--c-pagina));
+    --c-sombra-foto: color-mix(in srgb, var(--c-rosa-calmo) 24%, transparent);
+    --c-rosa-hover: color-mix(in srgb, var(--c-rosa-calmo) 85%, var(--c-texto));
+    --c-rosa-tinte-hover: color-mix(in srgb, var(--c-rosa-calmo) 12%, var(--c-panel));
+    --c-rosa-borde-hover: color-mix(in srgb, var(--c-rosa-calmo) 45%, var(--c-linea));
+    --c-enlace-hover: color-mix(in srgb, var(--c-blanco) 73%, var(--c-rosa-calmo));
+    --c-footer-hover: color-mix(in srgb, var(--c-gris) 65%, var(--c-rosa-calmo));
+}
+
+::selection {
+    background: var(--c-rosa-calmo);
+    color: var(--c-sobre-rosa);
+}

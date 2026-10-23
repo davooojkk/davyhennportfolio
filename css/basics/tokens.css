@@ -1,0 +1,21 @@
+/* Progresión binaria: valores equivalentes a 2, 4, 8, 16, 32 y 64 px
+   con tamaño raíz de 16 px. En rem también crecen al ampliar el texto. */
+:root {
+    --espacio-2: .125rem;
+    --espacio-4: .25rem;
+    --espacio-8: .5rem;
+    --espacio-16: 1rem;
+    --espacio-32: 2rem;
+    --espacio-64: 4rem;
+
+    --ancho-max: 78rem;
+    --alto-hero: clamp(36rem, 92svh, 56rem);
+
+    --radio-sm: .5rem;
+    --radio-md: 1rem;
+    --radio-full: 100vmax;
+    --grosor-linea: 1px;
+
+    --duración-rapida: 240ms;
+    --curva-interaccion: cubic-bezier(.22, 1, .36, 1);
+}

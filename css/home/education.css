@@ -1,0 +1,75 @@
+/*
+ * Trayectoria en tres ritmos: inicio en superficie, aprendizaje a página
+ * abierta y futuro como cierre. Sin alterar una palabra del relato.
+ */
+.education {
+    display: grid;
+    grid-template-columns: minmax(0, .68fr) minmax(0, 1.32fr);
+    gap: var(--espacio-32) var(--espacio-64);
+    padding-block: var(--espacio-64);
+}
+
+.education > .education-heading {
+    max-width: 18ch;
+    padding-top: var(--espacio-32);
+    border-top: var(--grosor-linea) solid var(--c-linea);
+}
+
+.education > .education-story {
+    display: grid;
+    align-content: center;
+    gap: var(--espacio-32);
+    min-width: 0;
+    color: var(--c-gris-lectura);
+}
+
+.education > .education-story p {
+    max-width: 58ch;
+}
+
+/* El origen se lee como una nota personal, no como un bloque genérico. */
+.education > .education-story--origin {
+    padding: var(--espacio-32);
+    border-left: var(--espacio-4) solid var(--c-rosa-calmo);
+    border-radius: var(--radio-md);
+    background: var(--c-rosa-velo);
+}
+
+.education > .education-story--origin p:first-child {
+    color: var(--c-blanco);
+    font-size: var(--fs-educacion-lectura);
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+.education > .education-story--origin p:nth-child(2) {
+    font-size: var(--fs-lead);
+}
+
+/* La experiencia con clientes merece el énfasis de una idea central. */
+.education > .education-story--learning,
+.education > .education-story--future {
+    padding-block: var(--espacio-32);
+    border-top: var(--grosor-linea) solid var(--c-linea);
+}
+
+.education > .education-story--learning p {
+    max-width: 52ch;
+    padding-left: var(--espacio-32);
+    border-left: var(--espacio-4) solid var(--c-rosa-calmo);
+    color: var(--c-blanco);
+    font-size: var(--fs-educacion-lectura);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.education > .education-heading--future {
+    color: var(--c-rosa-calmo);
+}
+
+.education > .education-story--future p {
+    color: var(--c-gris-lectura);
+    font-size: var(--fs-lead);
+    font-weight: 500;
+    line-height: 1.6;
+}

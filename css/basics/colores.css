@@ -1,0 +1,20 @@
+/* 
+    Paleta de la identidad Davy / davotech:
+    Bases originales de la marca: oscuro, blanco y rosa. Para ajustar
+    la intensidad visible de la web, ver las variantes en tema.css.
+*/
+
+:root {
+    /* --- Bases: fondo oscuro, texto blanco --- */
+    --c-fondo: #0d0d0d;
+    --c-fondo-hondo: #0a0f12;   /* reserva para superficies profundas */
+    --c-superficie: #141414;    /* base de paneles */
+    --c-texto: #ffffff;
+    --c-texto-suave: #a1a1aa;   /* texto secundario (AA sobre oscuro) */
+
+    /* --- Identidad rosa DavoTech --- */
+    --c-rosa: #f808b8;          /* acento vivo: enlaces, foco, detalles */
+    --c-rosa-hondo: #db079f;    /* rosa profundo: superficies con texto blanco (AA) */
+    --c-rosa-suave: #f82098;    /* segundo rosa de la marca */
+    --c-sobre-acento: #0d0d0d;              /* texto encima del rosa vivo */
+}

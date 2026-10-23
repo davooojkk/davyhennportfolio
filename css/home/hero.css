@@ -1,0 +1,67 @@
+/* El retrato interrumpe una luz oblicua que retoma la barra de la marca. */
+.hero {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: var(--espacio-32);
+    min-height: min(98svh, 58rem);
+    margin-bottom: var(--espacio-64);
+    padding-top: var(--espacio-32);
+}
+
+.hero-text {
+    min-width: 0;
+}
+
+.hero-text > .hero-heading {
+    max-width: 23ch;
+}
+
+.hero-text > p:nth-child(2) {
+    max-width: 28ch;
+    margin-top: var(--espacio-16);
+    color: var(--c-rosa-calmo);
+}
+
+.hero-text > p:nth-child(3) {
+    max-width: 38ch;
+    margin-top: var(--espacio-16);
+    color: var(--c-gris);
+}
+
+.hero-text .call-button {
+    margin-top: var(--espacio-32);
+}
+
+.hero-img {
+    position: relative;
+    isolation: isolate;
+    width: calc(100% + var(--espacio-32));
+    aspect-ratio: 1086 / 1448;
+    max-height: var(--alto-hero);
+    min-width: 0;
+    margin-left: calc(var(--espacio-32) * -1);
+    align-self: end;
+    /* Foto y plano de luz se apagan juntos: bordes inferiores redondeados,
+       sin transparentar la barra rosa a través de la campera. */
+    mask-image: radial-gradient(ellipse 85% 92% at 50% 8%, black 65%, transparent 100%);
+}
+
+.hero-img::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: '';
+    background: linear-gradient(150deg, var(--c-rosa-foto), var(--c-rosa-velo) 78%);
+    clip-path: polygon(26% 0, 100% 0, 68% 100%, 0 100%);
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 78%, transparent);
+    pointer-events: none;
+}
+
+.hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 var(--espacio-16) var(--espacio-32) var(--c-sombra-foto));
+}

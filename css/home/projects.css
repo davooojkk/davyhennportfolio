@@ -1,0 +1,120 @@
+/*
+ * Mural de trabajos: tamaños y desplazamientos distintos en lugar de
+ * tres filas iguales. El orden visual sigue el orden del HTML.
+ */
+.projects {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 0;
+    gap: var(--espacio-64);
+    padding-block: var(--espacio-64);
+    border-top: var(--grosor-linea) solid var(--c-linea);
+}
+
+.projects > .title-one {
+    max-width: 20ch;
+    line-height: 1.08;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--espacio-32) var(--espacio-16);
+    min-width: 0;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    grid-column: 1 / span 7;
+}
+
+.project-card:nth-child(2) {
+    grid-column: 8 / -1;
+    margin-top: var(--espacio-64);
+}
+
+.project-card:nth-child(3) {
+    grid-column: 3 / span 8;
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radio-sm);
+    filter: brightness(.9) saturate(.9);
+    transform: rotate(-1.5deg);
+}
+
+.project-card:nth-child(2) img {
+    aspect-ratio: 1;
+    transform: rotate(1.5deg);
+}
+
+.project-card:nth-child(3) img {
+    aspect-ratio: 16 / 9;
+    transform: rotate(-.8deg);
+}
+
+/* El nombre pisa el borde inferior; la descripción queda libre para leerse. */
+.project-card > .project-title {
+    position: relative;
+    align-self: flex-start;
+    max-width: calc(100% - var(--espacio-32));
+    margin-top: calc(var(--espacio-32) * -1);
+    margin-left: var(--espacio-32);
+    padding: var(--espacio-16);
+    border-radius: var(--radio-sm);
+    background: var(--c-panel);
+}
+
+/* Un solo acento saturado dentro del mural: la pieza central. */
+.project-card:nth-child(2) > .project-title {
+    background: var(--c-rosa-calmo);
+    color: var(--c-sobre-rosa);
+    transform: rotate(2deg);
+}
+
+.project-card > .project-description {
+    max-width: 36ch;
+    margin-top: var(--espacio-16);
+    margin-left: var(--espacio-32);
+    color: var(--c-gris-lectura);
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+}
+
+.project-card > a:not(.call-button) {
+    align-self: flex-start;
+    min-width: 0;
+    max-width: calc(100% - var(--espacio-32));
+    margin-top: var(--espacio-16);
+    margin-left: var(--espacio-32);
+    padding: var(--espacio-8) var(--espacio-16);
+    border: var(--grosor-linea) solid var(--c-linea);
+    border-radius: var(--radio-full);
+    background: var(--c-rosa-velo);
+    color: var(--c-rosa-calmo);
+    font-family: var(--fuente-texto);
+    font-size: var(--fs-cuerpo);
+    font-weight: 700;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: background-color var(--duración-rapida) var(--curva-interaccion),
+                border-color var(--duración-rapida) var(--curva-interaccion),
+                color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.project-card > a:not(.call-button):hover {
+    background-color: var(--c-rosa-tinte-hover);
+    border-color: var(--c-rosa-borde-hover);
+    color: var(--c-rosa-hover);
+}
+
+.projects > .call-button {
+    justify-self: end;
+}

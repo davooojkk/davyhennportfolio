@@ -1,0 +1,53 @@
+/*
+ * Preguntas y respuestas sin tarjetas: el recorrido diagonal acompaña la
+ * conversación sobre problemas reales, no una grilla de productos.
+ */
+.ventas {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--espacio-32) var(--espacio-16);
+    margin-block: var(--espacio-64);
+    padding-block: var(--espacio-64);
+    border-top: var(--grosor-linea) solid var(--c-linea);
+}
+
+.ventas > .ventas-heading--benefits {
+    grid-column: 1 / span 9;
+    grid-row: 1;
+    max-width: 18ch;
+}
+
+.ventas > .ventas-copy--benefits {
+    grid-column: 4 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--espacio-32);
+}
+
+.ventas > .ventas-heading--audience {
+    grid-column: 2 / span 8;
+    grid-row: 3;
+    max-width: 25ch;
+    margin-top: var(--espacio-32);
+    color: var(--c-rosa-calmo);
+    font-size: var(--fs-titulo-proyectos);
+}
+
+.ventas > .ventas-copy--audience {
+    grid-column: 5 / -1;
+    grid-row: 4;
+}
+
+.ventas-copy p {
+    max-width: 54ch;
+    color: var(--c-gris-lectura);
+    font-size: var(--fs-educacion-lectura);
+    line-height: 1.6;
+}
+
+.ventas > .ventas-copy--benefits p:first-child,
+.ventas > .ventas-copy--audience p {
+    color: var(--c-blanco);
+    font-weight: 500;
+}

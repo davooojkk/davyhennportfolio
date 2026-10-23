@@ -1,0 +1,76 @@
+/* Sora para leer sin fatiga; Space Mono solo en la navegación y metadatos. */
+:root {
+    --fuente-titulo: 'Sora', system-ui, sans-serif;
+    --fuente-texto: 'Space Mono', ui-monospace, monospace;
+
+    --fs-hero: clamp(2.25rem, 3.65vw, 3.75rem);
+    --fs-titulo: clamp(2rem, 4.3vw, 4.25rem);
+    --fs-titulo-proyectos: clamp(2rem, 3.4vw, 3.4rem);
+    --fs-proyecto: clamp(1.5rem, 2.6vw, 2.35rem);
+    --fs-educacion-titulo: clamp(1.75rem, 3vw, 2.75rem);
+    --fs-educacion-lectura: clamp(1.0625rem, 1.5vw, 1.25rem);
+    --fs-subtitulo: clamp(1.3rem, 2vw, 1.9rem);
+    --fs-lead: clamp(1rem, 1.35vw, 1.2rem);
+    --fs-cuerpo: clamp(.94rem, 1vw, 1rem);
+    --fs-detalle: .83rem;
+}
+
+body {
+    font-family: var(--fuente-titulo);
+    font-size: var(--fs-cuerpo);
+    line-height: 1.65;
+}
+
+/* Roles tipográficos de los encabezados semánticos. */
+.hero-text > .hero-heading,
+.projects > .title-one,
+.ventas > .ventas-heading,
+.education > .education-heading,
+.call > .call-heading {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    line-height: 1.13;
+    letter-spacing: -.04em;
+    text-wrap: balance;
+}
+
+.hero-text > .hero-heading {
+    font-size: var(--fs-hero);
+    font-weight: 700;
+}
+
+.projects > .title-one {
+    font-size: var(--fs-titulo-proyectos);
+}
+
+.ventas > .ventas-heading--benefits,
+.call > .call-heading {
+    font-size: var(--fs-titulo);
+}
+
+.ventas > .ventas-heading--audience,
+.education > .education-heading--learning,
+.education > .education-heading--future {
+    font-size: var(--fs-subtitulo);
+}
+
+.education > .education-heading--origin {
+    font-size: var(--fs-educacion-titulo);
+}
+
+.hero-text > p:nth-child(2) {
+    font-family: var(--fuente-titulo);
+    font-size: var(--fs-subtitulo);
+    font-weight: 600;
+}
+
+.hero-text > p:nth-child(3) {
+    font-size: var(--fs-lead);
+}
+
+.project-card > .project-title {
+    font-family: var(--fuente-titulo);
+    font-size: var(--fs-proyecto);
+    font-weight: 700;
+    line-height: 1.2;
+}
