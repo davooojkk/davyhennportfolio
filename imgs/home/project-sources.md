@@ -1,10 +1,9 @@
-# Fotos de muestra de las galerías de proyectos
+# Capturas de los proyectos
 
-Las seis fotos adicionales son ejemplos visuales, no imágenes de trabajos realizados para esos clientes. Descargadas de Unsplash (licencia: https://unsplash.com/license) y alojadas localmente para evitar dependencias externas. Se pueden sustituir por fotos reales conservando los nombres de archivo.
+Nueve capturas de las interfaces publicadas, tomadas el 24 de octubre de 2026, recortadas para el mural y guardadas en WebP para que las galerías funcionen sin descargar imágenes de otros dominios.
 
-- `proyecto-barbero-2.jpg`: https://images.unsplash.com/photo-1622286342621-4bd786c2447c
-- `proyecto-barbero-3.jpg`: https://images.unsplash.com/photo-1599351431202-1e0f0137899a
-- `proyecto-hamburgueseria-2.jpg`: https://images.unsplash.com/photo-1571091718767-18b5b1457add
-- `proyecto-hamburgueseria-3.jpg`: https://images.unsplash.com/photo-1561758033-d89a9ad46330
-- `proyecto-oculista-2.jpg`: https://images.unsplash.com/photo-1511499767150-a48a237f0083
-- `proyecto-oculista-3.jpg`: https://images.unsplash.com/photo-1572635196237-14b3f281503f
+- `proyecto-donquijote-{portada,carta,horarios}.webp`: https://donquijotechuy.com/ — sitio del restaurante. Su pie acredita el diseño y desarrollo a @davotech.uy.
+- `proyecto-dollivera-{formulario,registros,adaptable}.webp`: https://davooojkk.github.io/dolliverafinances/ — aplicación de gastos. La captura `registros` contiene dos gastos **de ejemplo** ingresados en una sesión aislada del navegador; no son datos de usuarios. La captura `adaptable` muestra su versión para pantalla estrecha centrada sobre un fondo oscuro.
+- `proyecto-bikcraft-{portada,catalogo,producto}.webp`: https://davooojkk.github.io/bikcraft_aula/ — ejercicio del curso de HTML y CSS de [Origamid](https://www.origamid.com/curso/html-e-css-para-iniciantes); no se presenta como encargo de un cliente ni se atribuye el diseño original al autor del portfolio.
+
+Los tres archivos originales `proyecto-barbero.jpg`, `proyecto-hamburgueseria.jpg` y `proyecto-oculista.jpg` se conservan en el repositorio, pero ya no se muestran en las galerías.
