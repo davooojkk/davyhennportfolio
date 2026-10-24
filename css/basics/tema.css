@@ -10,7 +10,13 @@
     --c-gris-lectura: color-mix(in srgb, var(--c-gris) 60%, var(--c-blanco));
     --c-tinta-lectura: color-mix(in srgb, var(--c-tinta) 85%, var(--c-texto));
     --c-rosa-vivo: var(--c-rosa);
+    --c-rosa-fondo-contacto: color-mix(in srgb, var(--c-rosa) 30%, var(--c-fondo));
     --c-sobre-rosa: var(--c-sobre-acento);
+
+    --c-boton-borde: var(--c-rosa-calmo);
+    --c-boton-texto: var(--c-rosa-aire);
+    --c-boton-borde-hover: var(--c-rosa-aire);
+    --c-boton-texto-hover: var(--c-texto);
 
     --c-linea: color-mix(in srgb, var(--c-blanco) 10%, transparent);
     --c-rosa-velo: color-mix(in srgb, var(--c-rosa) 5%, var(--c-panel));

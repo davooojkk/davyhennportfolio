@@ -258,16 +258,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero-text .call-button:hover {
-        box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-rosa-foto);
-        transform: rotate(-2deg);
-    }
-
-    .call-action .call-button:hover {
-        box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-texto);
-        transform: none;
-    }
-
     *,
     *::before,
     *::after {

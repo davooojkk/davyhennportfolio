@@ -107,18 +107,6 @@
     filter: drop-shadow(0 1rem 2.5rem var(--c-sombra-foto));
 }
 
-.hero-text .call-button {
-    border-radius: 0;
-    background: var(--c-rosa-aire);
-    box-shadow: .45rem .45rem 0 var(--c-rosa-vivo);
-    transform: none;
-}
-
-.hero-text .call-button:hover {
-    box-shadow: .2rem .2rem 0 var(--c-rosa-vivo);
-    transform: translate(.25rem, .25rem);
-}
-
 .projects {
     gap: clamp(4rem, 9vw, 9rem);
     padding-block: clamp(5rem, 10vw, 10rem);
@@ -245,24 +233,15 @@
     margin-left: 0;
 }
 
-.project-card > a.project-visit {
-    border-radius: 0;
-    border-color: var(--c-rosa-calmo);
-    background: transparent;
-}
-
 .project-gallery-controls {
     right: clamp(.5rem, 3vw, 2rem);
     bottom: clamp(.5rem, 3vw, 2rem);
-    border-radius: 0;
     background: color-mix(in srgb, var(--c-fondo) 94%, transparent);
 }
 
 .projects > .call-button {
     justify-self: start;
     margin-left: clamp(0px, 20vw, 19rem);
-    border-radius: 0;
-    background: var(--c-rosa-niebla);
 }
 
 .ventas {
@@ -371,8 +350,6 @@
     margin-top: 0;
     padding: clamp(4rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
     border-radius: 0;
-    background: var(--c-tinta);
-    color: var(--c-blanco);
     clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
 }
 
@@ -436,35 +413,13 @@
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .call-step picture:hover img {
-        transform: scale(1.045);
+        transform: translateY(-.375rem);
     }
 }
 
 .call-action {
     justify-content: flex-start;
     flex-wrap: wrap;
-}
-
-.call-action p {
-    color: var(--c-blanco);
-}
-
-.call-action .call-button {
-    border-radius: 0;
-    border-color: var(--c-rosa-aire);
-    background: var(--c-rosa-aire);
-    color: var(--c-tinta);
-    box-shadow: .5rem .5rem 0 var(--c-rosa-vivo);
-}
-
-.call-action .call-button:hover {
-    border-color: var(--c-rosa-aire);
-    background: var(--c-rosa-aire);
-    box-shadow: .25rem .25rem 0 var(--c-rosa-vivo);
-}
-
-.call-action .call-button:focus-visible {
-    outline-color: var(--c-rosa-niebla);
 }
 
 .footer {
@@ -650,9 +605,5 @@
 
     .education > .education-story--learning p {
         padding-left: 0;
-    }
-
-    .call-action .call-button {
-        box-shadow: .35rem .35rem 0 var(--c-rosa-vivo);
     }
 }

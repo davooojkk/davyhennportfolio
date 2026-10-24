@@ -33,7 +33,7 @@
     min-height: 44px;
 }
 
-.footer-list a:hover {
+.footer-list a:hover:not(.call-button) {
     color: var(--c-footer-hover);
 }
 
@@ -52,16 +52,5 @@
 .footer-list .call-button {
     min-height: 2.75rem;
     padding-inline: var(--espacio-16);
-    background: transparent;
-    color: var(--c-rosa-calmo);
     font-size: var(--fs-detalle);
-    transition: background-color var(--duración-rapida) var(--curva-interaccion),
-                border-color var(--duración-rapida) var(--curva-interaccion),
-                color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.footer-list .call-button:hover {
-    background-color: var(--c-rosa-tinte-hover);
-    border-color: var(--c-rosa-borde-hover);
-    color: var(--c-rosa-hover);
 }

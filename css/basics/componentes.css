@@ -1,13 +1,25 @@
-/* Botones y enlaces usados por distintas secciones. */
+/* Todos los botones comparten forma, contorno y estados; solo varía su tamaño. */
+:is(.call-button, .project-visit, .project-gallery-controls button, .skip-link) {
+    border: var(--grosor-linea) solid var(--c-boton-borde);
+    border-radius: var(--radio-boton);
+    background: transparent;
+    color: var(--c-boton-texto);
+    transition: border-color var(--duración-rapida) var(--curva-interaccion),
+                color var(--duración-rapida) var(--curva-interaccion);
+}
+
+:is(.call-button, .project-visit, .project-gallery-controls button, .skip-link):hover {
+    border-color: var(--c-boton-borde-hover);
+    background: transparent;
+    color: var(--c-boton-texto-hover);
+}
+
 .skip-link {
     position: absolute;
     z-index: 10;
     top: var(--espacio-16);
     left: var(--espacio-16);
     padding: var(--espacio-8) var(--espacio-16);
-    border-radius: var(--radio-sm);
-    background: var(--c-rosa-calmo);
-    color: var(--c-sobre-rosa);
     font-weight: 700;
     transform: translateY(-200%);
 }
@@ -25,22 +37,11 @@
     max-width: 100%;
     min-height: 3rem;
     padding: var(--espacio-8) var(--espacio-16);
-    border: var(--grosor-linea) solid var(--c-rosa-calmo);
-    border-radius: var(--radio-full);
-    background: var(--c-rosa-calmo);
-    color: var(--c-sobre-rosa);
     font-size: var(--fs-cuerpo);
     font-weight: 600;
     line-height: 1.3;
     text-align: center;
     overflow-wrap: anywhere;
-    transition: background-color var(--duración-rapida) var(--curva-interaccion),
-                border-color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.call-button:hover {
-    background-color: var(--c-rosa-hover);
-    border-color: var(--c-rosa-hover);
 }
 
 .call-button:focus-visible {
@@ -49,7 +50,7 @@
 
 /* Enlaces de lectura: contraste suficiente y subrayado visible. */
 .education a:not(.call-button),
-.project-card a:not(.call-button) {
+.project-card a:not(.call-button):not(.project-visit) {
     color: var(--c-rosa-calmo);
     text-decoration: underline;
     text-decoration-thickness: var(--grosor-linea);

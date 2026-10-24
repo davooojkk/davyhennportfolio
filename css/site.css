@@ -33,7 +33,13 @@
     --c-gris-lectura: color-mix(in srgb, var(--c-gris) 60%, var(--c-blanco));
     --c-tinta-lectura: color-mix(in srgb, var(--c-tinta) 85%, var(--c-texto));
     --c-rosa-vivo: var(--c-rosa);
+    --c-rosa-fondo-contacto: color-mix(in srgb, var(--c-rosa) 30%, var(--c-fondo));
     --c-sobre-rosa: var(--c-sobre-acento);
+
+    --c-boton-borde: var(--c-rosa-calmo);
+    --c-boton-texto: var(--c-rosa-aire);
+    --c-boton-borde-hover: var(--c-rosa-aire);
+    --c-boton-texto-hover: var(--c-texto);
 
     --c-linea: color-mix(in srgb, var(--c-blanco) 10%, transparent);
     --c-rosa-velo: color-mix(in srgb, var(--c-rosa) 5%, var(--c-panel));
@@ -68,6 +74,7 @@
     --radio-sm: .5rem;
     --radio-md: 1rem;
     --radio-full: 100vmax;
+    --radio-boton: var(--radio-full);
     --grosor-linea: 1px;
 
     --duración-rapida: 240ms;
@@ -250,16 +257,28 @@ body {
 }
 
 /* ./basics/componentes.css */
-/* Botones y enlaces usados por distintas secciones. */
+/* Todos los botones comparten forma, contorno y estados; solo varía su tamaño. */
+:is(.call-button, .project-visit, .project-gallery-controls button, .skip-link) {
+    border: var(--grosor-linea) solid var(--c-boton-borde);
+    border-radius: var(--radio-boton);
+    background: transparent;
+    color: var(--c-boton-texto);
+    transition: border-color var(--duración-rapida) var(--curva-interaccion),
+                color var(--duración-rapida) var(--curva-interaccion);
+}
+
+:is(.call-button, .project-visit, .project-gallery-controls button, .skip-link):hover {
+    border-color: var(--c-boton-borde-hover);
+    background: transparent;
+    color: var(--c-boton-texto-hover);
+}
+
 .skip-link {
     position: absolute;
     z-index: 10;
     top: var(--espacio-16);
     left: var(--espacio-16);
     padding: var(--espacio-8) var(--espacio-16);
-    border-radius: var(--radio-sm);
-    background: var(--c-rosa-calmo);
-    color: var(--c-sobre-rosa);
     font-weight: 700;
     transform: translateY(-200%);
 }
@@ -277,22 +296,11 @@ body {
     max-width: 100%;
     min-height: 3rem;
     padding: var(--espacio-8) var(--espacio-16);
-    border: var(--grosor-linea) solid var(--c-rosa-calmo);
-    border-radius: var(--radio-full);
-    background: var(--c-rosa-calmo);
-    color: var(--c-sobre-rosa);
     font-size: var(--fs-cuerpo);
     font-weight: 600;
     line-height: 1.3;
     text-align: center;
     overflow-wrap: anywhere;
-    transition: background-color var(--duración-rapida) var(--curva-interaccion),
-                border-color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.call-button:hover {
-    background-color: var(--c-rosa-hover);
-    border-color: var(--c-rosa-hover);
 }
 
 .call-button:focus-visible {
@@ -301,7 +309,7 @@ body {
 
 /* Enlaces de lectura: contraste suficiente y subrayado visible. */
 .education a:not(.call-button),
-.project-card a:not(.call-button) {
+.project-card a:not(.call-button):not(.project-visit) {
     color: var(--c-rosa-calmo);
     text-decoration: underline;
     text-decoration-thickness: var(--grosor-linea);
@@ -425,17 +433,6 @@ body {
 
 .hero-text .call-button {
     margin-top: var(--espacio-32);
-    border-radius: var(--radio-sm);
-    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-rosa-foto);
-    transform: rotate(-2deg);
-    transition: transform var(--duración-rapida) var(--curva-interaccion),
-                box-shadow var(--duración-rapida) var(--curva-interaccion),
-                background-color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.hero-text .call-button:hover {
-    box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-rosa-foto);
-    transform: translate(var(--espacio-4), var(--espacio-4)) rotate(0);
 }
 
 .hero-img {
@@ -665,18 +662,10 @@ body {
     width: 44px;
     height: 44px;
     padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: transparent;
-    color: inherit;
     font-family: var(--fuente-titulo);
     font-size: 28px;
     line-height: 1;
     cursor: pointer;
-}
-
-.project-gallery-controls button:hover {
-    background: var(--c-rosa-tinte-hover);
 }
 
 .project-gallery-count {
@@ -729,21 +718,10 @@ body {
     margin-top: var(--espacio-16);
     margin-left: var(--espacio-32);
     padding: var(--espacio-8) var(--espacio-16);
-    border: var(--grosor-linea) solid var(--c-rosa-borde-hover);
-    border-radius: var(--radio-full);
-    background: var(--c-rosa-velo);
-    color: var(--c-rosa-calmo);
     font-family: var(--fuente-texto);
     font-size: var(--fs-cuerpo);
     font-weight: 700;
     text-decoration: none;
-    transition: background-color var(--duración-rapida) var(--curva-interaccion),
-                border-color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.project-card > a.project-visit:hover {
-    border-color: var(--c-rosa-calmo);
-    background: var(--c-rosa-tinte-hover);
 }
 
 .projects > .call-button {
@@ -934,8 +912,8 @@ body {
     padding-block: var(--espacio-64);
     padding-inline: clamp(var(--espacio-16), 4vw, var(--espacio-64));
     border-radius: var(--radio-md) clamp(3rem, 8vw, 7rem) var(--radio-md) var(--radio-md);
-    background: var(--c-rosa-aire);
-    color: var(--c-tinta);
+    background: var(--c-rosa-fondo-contacto);
+    color: var(--c-blanco);
 }
 
 .call > .call-heading {
@@ -1018,7 +996,7 @@ body {
 
 .call-action p {
     max-width: 35ch;
-    color: var(--c-tinta);
+    color: var(--c-blanco);
     font-size: var(--fs-lead);
     line-height: 1.55;
 }
@@ -1027,26 +1005,11 @@ body {
     flex: none;
     min-height: 3.5rem;
     padding: var(--espacio-16) var(--espacio-32);
-    border-radius: var(--radio-sm);
     font-size: var(--fs-lead);
-    border-color: var(--c-tinta);
-    background: var(--c-tinta);
-    color: var(--c-texto);
-    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-texto);
-    transition: transform var(--duración-rapida) var(--curva-interaccion),
-                box-shadow var(--duración-rapida) var(--curva-interaccion),
-                background-color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.call-action .call-button:hover {
-    border-color: var(--c-tinta);
-    background: color-mix(in srgb, var(--c-tinta) 85%, var(--c-rosa));
-    box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-texto);
-    transform: translate(var(--espacio-4), var(--espacio-4));
 }
 
 .call-action .call-button:focus-visible {
-    outline-color: var(--c-tinta);
+    outline-color: var(--c-rosa-niebla);
 }
 
 /* ./home/footer.css */
@@ -1085,7 +1048,7 @@ body {
     min-height: 44px;
 }
 
-.footer-list a:hover {
+.footer-list a:hover:not(.call-button) {
     color: var(--c-footer-hover);
 }
 
@@ -1104,18 +1067,7 @@ body {
 .footer-list .call-button {
     min-height: 2.75rem;
     padding-inline: var(--espacio-16);
-    background: transparent;
-    color: var(--c-rosa-calmo);
     font-size: var(--fs-detalle);
-    transition: background-color var(--duración-rapida) var(--curva-interaccion),
-                border-color var(--duración-rapida) var(--curva-interaccion),
-                color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.footer-list .call-button:hover {
-    background-color: var(--c-rosa-tinte-hover);
-    border-color: var(--c-rosa-borde-hover);
-    color: var(--c-rosa-hover);
 }
 
 /* ./basics/responsive.css */
@@ -1379,16 +1331,6 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero-text .call-button:hover {
-        box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-rosa-foto);
-        transform: rotate(-2deg);
-    }
-
-    .call-action .call-button:hover {
-        box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-texto);
-        transform: none;
-    }
-
     *,
     *::before,
     *::after {
@@ -1506,18 +1448,6 @@ body {
 
 .hero-img img {
     filter: drop-shadow(0 1rem 2.5rem var(--c-sombra-foto));
-}
-
-.hero-text .call-button {
-    border-radius: 0;
-    background: var(--c-rosa-aire);
-    box-shadow: .45rem .45rem 0 var(--c-rosa-vivo);
-    transform: none;
-}
-
-.hero-text .call-button:hover {
-    box-shadow: .2rem .2rem 0 var(--c-rosa-vivo);
-    transform: translate(.25rem, .25rem);
 }
 
 .projects {
@@ -1646,24 +1576,15 @@ body {
     margin-left: 0;
 }
 
-.project-card > a.project-visit {
-    border-radius: 0;
-    border-color: var(--c-rosa-calmo);
-    background: transparent;
-}
-
 .project-gallery-controls {
     right: clamp(.5rem, 3vw, 2rem);
     bottom: clamp(.5rem, 3vw, 2rem);
-    border-radius: 0;
     background: color-mix(in srgb, var(--c-fondo) 94%, transparent);
 }
 
 .projects > .call-button {
     justify-self: start;
     margin-left: clamp(0px, 20vw, 19rem);
-    border-radius: 0;
-    background: var(--c-rosa-niebla);
 }
 
 .ventas {
@@ -1772,8 +1693,6 @@ body {
     margin-top: 0;
     padding: clamp(4rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
     border-radius: 0;
-    background: var(--c-tinta);
-    color: var(--c-blanco);
     clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
 }
 
@@ -1837,35 +1756,13 @@ body {
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .call-step picture:hover img {
-        transform: scale(1.045);
+        transform: translateY(-.375rem);
     }
 }
 
 .call-action {
     justify-content: flex-start;
     flex-wrap: wrap;
-}
-
-.call-action p {
-    color: var(--c-blanco);
-}
-
-.call-action .call-button {
-    border-radius: 0;
-    border-color: var(--c-rosa-aire);
-    background: var(--c-rosa-aire);
-    color: var(--c-tinta);
-    box-shadow: .5rem .5rem 0 var(--c-rosa-vivo);
-}
-
-.call-action .call-button:hover {
-    border-color: var(--c-rosa-aire);
-    background: var(--c-rosa-aire);
-    box-shadow: .25rem .25rem 0 var(--c-rosa-vivo);
-}
-
-.call-action .call-button:focus-visible {
-    outline-color: var(--c-rosa-niebla);
 }
 
 .footer {
@@ -2051,9 +1948,5 @@ body {
 
     .education > .education-story--learning p {
         padding-left: 0;
-    }
-
-    .call-action .call-button {
-        box-shadow: .35rem .35rem 0 var(--c-rosa-vivo);
     }
 }

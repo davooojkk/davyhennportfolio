@@ -36,17 +36,6 @@
 
 .hero-text .call-button {
     margin-top: var(--espacio-32);
-    border-radius: var(--radio-sm);
-    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-rosa-foto);
-    transform: rotate(-2deg);
-    transition: transform var(--duración-rapida) var(--curva-interaccion),
-                box-shadow var(--duración-rapida) var(--curva-interaccion),
-                background-color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.hero-text .call-button:hover {
-    box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-rosa-foto);
-    transform: translate(var(--espacio-4), var(--espacio-4)) rotate(0);
 }
 
 .hero-img {

@@ -173,18 +173,10 @@
     width: 44px;
     height: 44px;
     padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: transparent;
-    color: inherit;
     font-family: var(--fuente-titulo);
     font-size: 28px;
     line-height: 1;
     cursor: pointer;
-}
-
-.project-gallery-controls button:hover {
-    background: var(--c-rosa-tinte-hover);
 }
 
 .project-gallery-count {
@@ -237,21 +229,10 @@
     margin-top: var(--espacio-16);
     margin-left: var(--espacio-32);
     padding: var(--espacio-8) var(--espacio-16);
-    border: var(--grosor-linea) solid var(--c-rosa-borde-hover);
-    border-radius: var(--radio-full);
-    background: var(--c-rosa-velo);
-    color: var(--c-rosa-calmo);
     font-family: var(--fuente-texto);
     font-size: var(--fs-cuerpo);
     font-weight: 700;
     text-decoration: none;
-    transition: background-color var(--duración-rapida) var(--curva-interaccion),
-                border-color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.project-card > a.project-visit:hover {
-    border-color: var(--c-rosa-calmo);
-    background: var(--c-rosa-tinte-hover);
 }
 
 .projects > .call-button {

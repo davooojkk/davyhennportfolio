@@ -8,8 +8,8 @@
     padding-block: var(--espacio-64);
     padding-inline: clamp(var(--espacio-16), 4vw, var(--espacio-64));
     border-radius: var(--radio-md) clamp(3rem, 8vw, 7rem) var(--radio-md) var(--radio-md);
-    background: var(--c-rosa-aire);
-    color: var(--c-tinta);
+    background: var(--c-rosa-fondo-contacto);
+    color: var(--c-blanco);
 }
 
 .call > .call-heading {
@@ -92,7 +92,7 @@
 
 .call-action p {
     max-width: 35ch;
-    color: var(--c-tinta);
+    color: var(--c-blanco);
     font-size: var(--fs-lead);
     line-height: 1.55;
 }
@@ -101,24 +101,9 @@
     flex: none;
     min-height: 3.5rem;
     padding: var(--espacio-16) var(--espacio-32);
-    border-radius: var(--radio-sm);
     font-size: var(--fs-lead);
-    border-color: var(--c-tinta);
-    background: var(--c-tinta);
-    color: var(--c-texto);
-    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-texto);
-    transition: transform var(--duración-rapida) var(--curva-interaccion),
-                box-shadow var(--duración-rapida) var(--curva-interaccion),
-                background-color var(--duración-rapida) var(--curva-interaccion);
-}
-
-.call-action .call-button:hover {
-    border-color: var(--c-tinta);
-    background: color-mix(in srgb, var(--c-tinta) 85%, var(--c-rosa));
-    box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-texto);
-    transform: translate(var(--espacio-4), var(--espacio-4));
 }
 
 .call-action .call-button:focus-visible {
-    outline-color: var(--c-tinta);
+    outline-color: var(--c-rosa-niebla);
 }
