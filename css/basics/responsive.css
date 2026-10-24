@@ -183,13 +183,32 @@
 
     .project-card > .project-title,
     .project-card > .project-description,
-    .project-card > a:not(.call-button) {
+    .project-card > .project-visit {
         margin-left: var(--espacio-16);
     }
 
+    /* En anchos equivalentes a zoom alto, evitar titulares letra a letra. */
+    .hero-text > .hero-heading {
+        font-size: min(13vw, var(--fs-hero));
+    }
+
+    .projects-intro > .title-one {
+        font-size: min(13vw, var(--fs-titulo-proyectos));
+    }
+
+    .ventas > .ventas-heading--benefits {
+        font-size: min(13vw, var(--fs-titulo));
+    }
+
+    .education > .education-heading--origin {
+        font-size: min(13vw, var(--fs-educacion-titulo));
+    }
+
     .project-card > .project-title {
+        font-size: min(12vw, var(--fs-proyecto));
         max-width: calc(100% - var(--espacio-16));
         margin-top: max(calc(var(--espacio-32) * -1), -32px);
+        padding: min(var(--espacio-16), 4vw);
     }
 
     main,
@@ -221,7 +240,12 @@
     }
 
     .call > .call-heading {
-        font-size: clamp(2.25rem, 9vw, 3rem);
+        font-size: min(13vw, clamp(2.25rem, 9vw, 3rem));
+    }
+
+    .call-action .call-button {
+        padding-inline: min(var(--espacio-32), 5vw);
+        font-size: min(var(--fs-lead), 7vw);
     }
 
     .footer {

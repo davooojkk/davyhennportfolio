@@ -1,4 +1,4 @@
-import { animarFotoAlScroll, iniciarHero, previsualizarProyecto } from './animaciones.js';
+import { animarFotoAlScroll, iniciarHero } from './animaciones.js';
 import { registrarGalerias } from './galerias.js';
 
 function observarFotos(movimientoReducido, vistas) {
@@ -54,20 +54,6 @@ export function registrarEventos() {
     let detenerScroll = observarFotos(movimientoReducido, fotosVistas);
     registrarGalerias(movimientoReducido, punteroPreciso);
 
-    const enlaces = document.querySelectorAll('.project-card > a:not(.call-button)');
-
-    function actualizarProyecto(enlace) {
-        const enfocado = enlace.matches(':focus-visible');
-        const bajoPuntero = punteroPreciso.matches && enlace.matches(':hover');
-        previsualizarProyecto(enlace, !movimientoReducido.matches && (enfocado || bajoPuntero));
-    }
-
-    enlaces.forEach((enlace) => {
-        for (const evento of ['pointerenter', 'pointerleave', 'focus', 'blur']) {
-            enlace.addEventListener(evento, () => actualizarProyecto(enlace));
-        }
-    });
-
     movimientoReducido.addEventListener('change', () => {
         if (!movimientoReducido.matches) {
             detenerScroll = observarFotos(movimientoReducido, fotosVistas);
@@ -75,7 +61,6 @@ export function registrarEventos() {
         }
 
         hero?.removeAttribute('data-animacion');
-        enlaces.forEach((enlace) => previsualizarProyecto(enlace, false));
         detenerScroll();
     });
 }

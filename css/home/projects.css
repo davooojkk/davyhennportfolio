@@ -134,12 +134,6 @@
     z-index: 2;
 }
 
-/* El enlace mantiene su respuesta previa; al hojear, solo se mueve esta foto. */
-.project-card.is-previewing .project-media {
-    transform: rotate(0) scale(1.015);
-    filter: brightness(1) saturate(1);
-}
-
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .project-media[data-gallery-ready]:hover {
         transform: rotate(0) scale(1.012);
@@ -150,14 +144,6 @@
 .project-gallery-controls {
     position: absolute;
     z-index: 3;
-    background: color-mix(in srgb, var(--c-fondo) 88%, transparent);
-    color: var(--c-texto);
-    font-family: var(--fuente-texto);
-    font-size: clamp(12px, var(--fs-detalle), 14px);
-    line-height: 1.2;
-}
-
-.project-gallery-controls {
     right: var(--espacio-16);
     bottom: min(calc(var(--espacio-32) + var(--espacio-16)), 48px);
     display: none;
@@ -166,6 +152,11 @@
     padding: var(--espacio-4);
     border: 1px solid var(--c-rosa-borde-hover);
     border-radius: var(--radio-full);
+    background: color-mix(in srgb, var(--c-fondo) 88%, transparent);
+    color: var(--c-texto);
+    font-family: var(--fuente-texto);
+    font-size: clamp(12px, var(--fs-detalle), 14px);
+    line-height: 1.2;
 }
 
 .project-media[data-gallery-ready] .project-gallery-controls {
@@ -232,31 +223,22 @@
     line-height: 1.55;
 }
 
-.project-card > a:not(.call-button) {
+.project-card > .project-visit {
     align-self: flex-start;
     min-width: 0;
     max-width: calc(100% - var(--espacio-32));
     margin-top: var(--espacio-16);
     margin-left: var(--espacio-32);
-    padding: var(--espacio-8) var(--espacio-16);
-    border: var(--grosor-linea) solid var(--c-linea);
-    border-radius: var(--radio-full);
-    background: var(--c-rosa-velo);
-    color: var(--c-rosa-calmo);
+    color: var(--c-gris-lectura);
     font-family: var(--fuente-texto);
     font-size: var(--fs-cuerpo);
     font-weight: 700;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-    transition: background-color var(--duración-rapida) var(--curva-interaccion),
-                border-color var(--duración-rapida) var(--curva-interaccion),
-                color var(--duración-rapida) var(--curva-interaccion);
 }
 
-.project-card > a:not(.call-button):hover {
-    background-color: var(--c-rosa-tinte-hover);
-    border-color: var(--c-rosa-borde-hover);
-    color: var(--c-rosa-hover);
+.project-visit small {
+    display: block;
+    font-size: var(--fs-detalle);
+    font-weight: 400;
 }
 
 .projects > .call-button {

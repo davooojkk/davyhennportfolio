@@ -1,4 +1,22 @@
 /* Botones y enlaces usados por distintas secciones. */
+.skip-link {
+    position: absolute;
+    z-index: 10;
+    top: var(--espacio-16);
+    left: var(--espacio-16);
+    padding: var(--espacio-8) var(--espacio-16);
+    border-radius: var(--radio-sm);
+    background: var(--c-rosa-calmo);
+    color: var(--c-sobre-rosa);
+    font-weight: 700;
+    transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+    outline-color: var(--c-blanco);
+    transform: none;
+}
+
 .call-button {
     display: inline-flex;
     align-items: center;

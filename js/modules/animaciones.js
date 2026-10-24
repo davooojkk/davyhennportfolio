@@ -8,10 +8,6 @@ export function iniciarHero(hero, movimientoReducido) {
     }, { once: true });
 }
 
-export function previsualizarProyecto(enlace, activo) {
-    enlace.closest('.project-card')?.classList.toggle('is-previewing', activo);
-}
-
 export function animarFotoAlScroll(elemento) {
     const esProyecto = elemento.closest('.project-card') !== null;
     const fotogramas = esProyecto

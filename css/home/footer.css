@@ -22,9 +22,15 @@
 .footer-list a {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--espacio-8);
     font-family: var(--fuente-texto);
     transition: color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.footer-list a:not(.call-button) {
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .footer-list a:hover {

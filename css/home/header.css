@@ -43,6 +43,7 @@
     display: inline-flex;
     align-items: center;
     gap: var(--espacio-8);
+    min-height: 44px;
     font-family: var(--fuente-texto);
     font-size: var(--fs-detalle);
     font-weight: 700;
