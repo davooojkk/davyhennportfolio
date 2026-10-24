@@ -3,6 +3,8 @@
  * tres filas iguales. El orden visual sigue el orden del HTML.
  */
 .projects {
+    position: relative;
+    isolation: isolate;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     min-width: 0;
@@ -11,9 +13,22 @@
     border-top: var(--grosor-linea) solid var(--c-linea);
 }
 
-.projects > .title-one {
+.projects-intro {
+    display: grid;
+    justify-items: start;
+    gap: var(--espacio-16);
+}
+
+.projects-intro > .title-one {
     max-width: 20ch;
     line-height: 1.08;
+}
+
+.projects-demo-note {
+    max-width: 55ch;
+    color: var(--c-gris-lectura);
+    font-family: var(--fuente-texto);
+    font-size: var(--fs-detalle);
 }
 
 .projects-grid {
@@ -25,10 +40,41 @@
 }
 
 .project-card {
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     min-width: 0;
     grid-column: 1 / span 7;
+}
+
+/* Color visible detrás del recorte: cada foto parece una pieza del mural. */
+.project-card::before {
+    position: absolute;
+    z-index: -1;
+    top: var(--espacio-8);
+    left: var(--espacio-8);
+    width: calc(100% - var(--espacio-8));
+    aspect-ratio: 4 / 3;
+    border: var(--espacio-4) solid var(--c-rosa-calmo);
+    border-radius: var(--radio-sm);
+    background: color-mix(in srgb, var(--c-rosa-calmo) 24%, var(--c-pagina));
+    content: '';
+    transform: translate(var(--espacio-8), var(--espacio-8)) rotate(2deg);
+    pointer-events: none;
+}
+
+.project-card:nth-child(2)::before {
+    aspect-ratio: 1;
+    border-color: var(--c-lavanda);
+    background: color-mix(in srgb, var(--c-lavanda) 24%, var(--c-pagina));
+    transform: translate(calc(var(--espacio-8) * -1), var(--espacio-8)) rotate(-2deg);
+}
+
+.project-card:nth-child(3)::before {
+    aspect-ratio: 16 / 9;
+    border-color: var(--c-rosa-aire);
+    background: color-mix(in srgb, var(--c-rosa-aire) 24%, var(--c-pagina));
 }
 
 .project-card:nth-child(2) {
@@ -40,24 +86,122 @@
     grid-column: 3 / span 8;
 }
 
-.project-card img {
+.project-media {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     width: 100%;
-    height: auto;
     aspect-ratio: 4 / 3;
-    object-fit: cover;
     border-radius: var(--radio-sm);
+    background: var(--c-panel);
     filter: brightness(.9) saturate(.9);
     transform: rotate(-1.5deg);
+    transition: transform 420ms var(--curva-interaccion),
+                filter 420ms var(--curva-interaccion);
 }
 
-.project-card:nth-child(2) img {
+.project-card:nth-child(2) .project-media {
     aspect-ratio: 1;
     transform: rotate(1.5deg);
 }
 
-.project-card:nth-child(3) img {
+.project-card:nth-child(3) .project-media {
     aspect-ratio: 16 / 9;
     transform: rotate(-.8deg);
+}
+
+.project-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    visibility: hidden;
+}
+
+/* La primera foto queda visible incluso si JavaScript no llega a ejecutarse. */
+.project-media img.is-current,
+.project-media img.is-incoming,
+.project-media img.is-outgoing {
+    visibility: visible;
+}
+
+.project-media img.is-incoming {
+    z-index: 1;
+}
+
+.project-media img.is-outgoing {
+    z-index: 2;
+}
+
+/* El enlace mantiene su respuesta previa; al hojear, solo se mueve esta foto. */
+.project-card.is-previewing .project-media {
+    transform: rotate(0) scale(1.015);
+    filter: brightness(1) saturate(1);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .project-media[data-gallery-ready]:hover {
+        transform: rotate(0) scale(1.012);
+        filter: brightness(1) saturate(1);
+    }
+}
+
+.project-gallery-controls {
+    position: absolute;
+    z-index: 3;
+    background: color-mix(in srgb, var(--c-fondo) 88%, transparent);
+    color: var(--c-texto);
+    font-family: var(--fuente-texto);
+    font-size: clamp(12px, var(--fs-detalle), 14px);
+    line-height: 1.2;
+}
+
+.project-gallery-controls {
+    right: var(--espacio-16);
+    bottom: min(calc(var(--espacio-32) + var(--espacio-16)), 48px);
+    display: none;
+    align-items: center;
+    gap: var(--espacio-4);
+    padding: var(--espacio-4);
+    border: 1px solid var(--c-rosa-borde-hover);
+    border-radius: var(--radio-full);
+}
+
+.project-media[data-gallery-ready] .project-gallery-controls {
+    display: flex;
+}
+
+.project-gallery-controls button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font-family: var(--fuente-titulo);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.project-gallery-controls button:hover {
+    background: var(--c-rosa-tinte-hover);
+}
+
+.project-gallery-count {
+    min-width: 3.5ch;
+    text-align: center;
+    white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+    .project-gallery-controls {
+        right: min(var(--espacio-8), 4px);
+    }
 }
 
 /* El nombre pisa el borde inferior; la descripción queda libre para leerse. */

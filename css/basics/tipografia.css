@@ -3,7 +3,7 @@
     --fuente-titulo: 'Sora', system-ui, sans-serif;
     --fuente-texto: 'Space Mono', ui-monospace, monospace;
 
-    --fs-hero: clamp(2.25rem, 3.65vw, 3.75rem);
+    --fs-hero: clamp(2.75rem, 5vw, 5.5rem);
     --fs-titulo: clamp(2rem, 4.3vw, 4.25rem);
     --fs-titulo-proyectos: clamp(2rem, 3.4vw, 3.4rem);
     --fs-proyecto: clamp(1.5rem, 2.6vw, 2.35rem);
@@ -23,7 +23,7 @@ body {
 
 /* Roles tipográficos de los encabezados semánticos. */
 .hero-text > .hero-heading,
-.projects > .title-one,
+.projects-intro > .title-one,
 .ventas > .ventas-heading,
 .education > .education-heading,
 .call > .call-heading {
@@ -39,7 +39,7 @@ body {
     font-weight: 700;
 }
 
-.projects > .title-one {
+.projects-intro > .title-one {
     font-size: var(--fs-titulo-proyectos);
 }
 

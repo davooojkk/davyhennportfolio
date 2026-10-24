@@ -20,6 +20,8 @@
         justify-self: center;
         width: min(100%, 40rem);
         height: auto;
+        aspect-ratio: auto;
+        max-height: none;
         margin-left: 0;
     }
 
@@ -97,7 +99,7 @@
     .ventas > .ventas-copy--audience,
     .call > .call-heading,
     .call ol,
-    .call .call-button {
+    .call-action {
         grid-column: 1;
         grid-row: auto;
     }
@@ -151,8 +153,10 @@
         aspect-ratio: 16 / 9;
     }
 
-    .call .call-button {
-        grid-column: 1;
+    .call-action {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--espacio-16);
     }
 }
 
@@ -185,6 +189,7 @@
 
     .project-card > .project-title {
         max-width: calc(100% - var(--espacio-16));
+        margin-top: max(calc(var(--espacio-32) * -1), -32px);
     }
 
     main,
@@ -215,10 +220,6 @@
         justify-self: stretch;
     }
 
-    .call .call-button {
-        justify-self: stretch;
-    }
-
     .call > .call-heading {
         font-size: clamp(2.25rem, 9vw, 3rem);
     }
@@ -233,6 +234,16 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .hero-text .call-button:hover {
+        box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-rosa-foto);
+        transform: rotate(-2deg);
+    }
+
+    .call-action .call-button:hover {
+        box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-texto);
+        transform: none;
+    }
+
     *,
     *::before,
     *::after {

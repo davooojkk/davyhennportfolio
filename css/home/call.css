@@ -1,11 +1,15 @@
 /* Del primer contacto al negocio abierto: tres momentos, no tres tarjetas. */
 .call {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: var(--espacio-64) var(--espacio-16);
     margin-top: var(--espacio-64);
     padding-block: var(--espacio-64);
-    border-top: var(--grosor-linea) solid var(--c-rosa-calmo);
+    padding-inline: clamp(var(--espacio-16), 4vw, var(--espacio-64));
+    border-radius: var(--radio-md) clamp(3rem, 8vw, 7rem) var(--radio-md) var(--radio-md);
+    background: var(--c-rosa-aire);
+    color: var(--c-tinta);
 }
 
 .call > .call-heading {
@@ -37,6 +41,16 @@
     width: 100%;
     object-fit: cover;
     filter: saturate(.8);
+    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-tinta);
+    transform: rotate(-1.5deg);
+}
+
+.call-step--idea img {
+    transform: rotate(1.5deg);
+}
+
+.call-step--launch img {
+    transform: rotate(-.8deg);
 }
 
 .call-step span {
@@ -67,11 +81,44 @@
     object-position: 58% center;
 }
 
-.call .call-button {
-    grid-column: 9 / -1;
-    justify-self: stretch;
-    min-height: 7rem;
+.call-action {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--espacio-32);
+    min-width: 0;
+}
+
+.call-action p {
+    max-width: 35ch;
+    color: var(--c-tinta);
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+}
+
+.call-action .call-button {
+    flex: none;
+    min-height: 3.5rem;
     padding: var(--espacio-16) var(--espacio-32);
     border-radius: var(--radio-sm);
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: var(--fs-lead);
+    border-color: var(--c-tinta);
+    background: var(--c-tinta);
+    color: var(--c-texto);
+    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-texto);
+    transition: transform var(--duración-rapida) var(--curva-interaccion),
+                box-shadow var(--duración-rapida) var(--curva-interaccion),
+                background-color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.call-action .call-button:hover {
+    border-color: var(--c-tinta);
+    background: #4a2553;
+    box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-texto);
+    transform: translate(var(--espacio-4), var(--espacio-4));
+}
+
+.call-action .call-button:focus-visible {
+    outline-color: var(--c-tinta);
 }

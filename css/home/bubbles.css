@@ -1,0 +1,125 @@
+/* Marcas circulares de trazo fino: acompañan las curvas del fondo y la barra /. */
+.bubbles {
+    position: absolute;
+    z-index: -1;
+    overflow: clip;
+    pointer-events: none;
+    user-select: none;
+}
+
+.bubble {
+    position: absolute;
+    display: block;
+    width: var(--bubble-size);
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in srgb, var(--c-lavanda) 40%, transparent);
+    border-left-color: transparent;
+    border-radius: 50%;
+    background: transparent;
+}
+
+.bubble::before {
+    position: absolute;
+    inset: 13%;
+    border: 1px solid transparent;
+    border-top-color: color-mix(in srgb, var(--c-rosa-aire) 28%, transparent);
+    border-right-color: color-mix(in srgb, var(--c-rosa-aire) 14%, transparent);
+    border-radius: 50%;
+    content: '';
+    transform: rotate(-30deg);
+}
+
+.bubble::after {
+    position: absolute;
+    top: 48%;
+    left: -7%;
+    width: 18%;
+    height: 1px;
+    background: color-mix(in srgb, var(--c-rosa-calmo) 50%, transparent);
+    content: '';
+    transform: rotate(-35deg);
+}
+
+.hero-bubbles {
+    inset: 0;
+}
+
+.bubble--hero-large {
+    --bubble-size: clamp(5rem, 8vw, 7rem);
+    top: 8%;
+    right: 8%;
+}
+
+.bubble--hero-small,
+.bubble--projects-small {
+    --bubble-size: .65rem;
+    border: 0;
+    background: var(--c-rosa-calmo);
+    opacity: .65;
+}
+
+.bubble--hero-small::before,
+.bubble--hero-small::after,
+.bubble--projects-small::before,
+.bubble--projects-small::after {
+    display: none;
+}
+
+.bubble--hero-small {
+    top: 14%;
+    right: 17%;
+}
+
+.projects-bubbles {
+    top: var(--espacio-32);
+    right: 0;
+    width: min(43%, 28rem);
+    height: 13rem;
+}
+
+.bubble--projects-large {
+    --bubble-size: clamp(4rem, 7vw, 6rem);
+    top: 12%;
+    left: 23%;
+    opacity: .8;
+}
+
+.bubble--projects-small {
+    top: 38%;
+    left: 47%;
+}
+
+@media (max-width: 880px) {
+    .hero-bubbles {
+        top: auto;
+        height: min(100vw, 44rem);
+    }
+
+    .bubble--hero-large {
+        top: 29%;
+        right: 0;
+    }
+
+    .bubble--hero-small {
+        top: 38%;
+        right: 16%;
+    }
+}
+
+@media (max-width: 520px) {
+    .bubble--hero-large {
+        --bubble-size: clamp(3rem, 18vw, 4.75rem);
+        top: 5%;
+    }
+
+    .bubble--hero-small {
+        top: 14%;
+        right: 20%;
+    }
+}
+
+@media (max-width: 720px) {
+    .projects-bubbles {
+        display: none;
+    }
+}
