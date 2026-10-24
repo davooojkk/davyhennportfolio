@@ -12,7 +12,7 @@
     display: block;
     width: var(--bubble-size);
     aspect-ratio: 1;
-    border: 1px solid color-mix(in srgb, var(--c-lavanda) 40%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c-rosa-niebla) 40%, transparent);
     border-left-color: transparent;
     border-radius: 50%;
     background: transparent;

@@ -1,36 +1,29 @@
 /* Generado por node scripts/build-css.mjs. Editar css/basics/ o css/home/. */
 
 /* ./basics/colores.css */
-/*
-    Paleta de la identidad Davy / davotech:
-    Bases originales de la marca: oscuro, blanco y rosa. Para ajustar
-    la intensidad visible de la web, ver las variantes en tema.css.
-*/
+/* Identidad DavoTech: un único fucsia; el resto son mezclas de esa base.
+   Los tonos oscuros y la tinta son neutros para dar jerarquía y contraste. */
 
 :root {
     /* --- Bases: fondo oscuro, texto blanco --- */
     --c-fondo: #0d0d0d;
-    --c-fondo-hondo: #0a0f12;   /* reserva para superficies profundas */
     --c-superficie: #141414;    /* base de paneles */
     --c-texto: #ffffff;
     --c-texto-suave: #a1a1aa;   /* texto secundario (AA sobre oscuro) */
 
-    /* --- Identidad rosa DavoTech --- */
-    --c-rosa: #f808b8;          /* acento vivo: enlaces, foco, detalles */
-    --c-rosa-hondo: #db079f;    /* rosa profundo: superficies con texto blanco (AA) */
-    --c-rosa-suave: #f82098;    /* segundo rosa de la marca */
-    --c-sobre-acento: #0d0d0d;              /* texto encima del rosa vivo */
-
-    /* Superficies luminosas: pausas de color sin sustituir al rosa de marca. */
-    --c-lavanda: #dec7ff;
-    --c-rosa-aire: #ffc1e5;
+    /* --- Fucsia eléctrico y escala tonal de la misma familia --- */
+    --c-rosa: #f808b8;          /* foco, trazos y detalles de la marca */
+    --c-rosa-calmo: color-mix(in srgb, var(--c-rosa) 52%, var(--c-texto)); /* texto sobre oscuro */
+    --c-rosa-aire: color-mix(in srgb, var(--c-rosa) 30%, var(--c-texto));  /* botones y pausas */
+    --c-rosa-niebla: color-mix(in srgb, var(--c-rosa) 16%, var(--c-texto)); /* panel amplio */
+    --c-sobre-acento: var(--c-fondo);
     --c-tinta: #21142b;
 }
 
 /* ./basics/tema.css */
 /*
- * Colores de uso en componentes. Los tonos de lectura y el rosa atenuado
- * salen de las bases de colores.css; el rosa vivo queda para el foco.
+ * Variantes funcionales basadas en la escala de colores.css.
+ * Ningún componente necesita introducir un segundo rosa base.
  */
 :root {
     --c-pagina: color-mix(in srgb, var(--c-fondo) 96%, var(--c-texto));
@@ -38,13 +31,12 @@
     --c-blanco: color-mix(in srgb, var(--c-texto) 88%, var(--c-fondo));
     --c-gris: var(--c-texto-suave);
     --c-gris-lectura: color-mix(in srgb, var(--c-gris) 60%, var(--c-blanco));
+    --c-tinta-lectura: color-mix(in srgb, var(--c-tinta) 85%, var(--c-texto));
     --c-rosa-vivo: var(--c-rosa);
-    --c-rosa-calmo: color-mix(in srgb, var(--c-rosa-suave) 54%, var(--c-texto));
-    --c-rosa-oscuro: var(--c-rosa-hondo);
     --c-sobre-rosa: var(--c-sobre-acento);
 
     --c-linea: color-mix(in srgb, var(--c-blanco) 10%, transparent);
-    --c-rosa-velo: color-mix(in srgb, var(--c-rosa-suave) 5%, var(--c-panel));
+    --c-rosa-velo: color-mix(in srgb, var(--c-rosa) 5%, var(--c-panel));
     --c-rosa-foto: color-mix(in srgb, var(--c-rosa-calmo) 42%, var(--c-pagina));
     --c-sombra-foto: color-mix(in srgb, var(--c-rosa-calmo) 24%, transparent);
     --c-rosa-hover: color-mix(in srgb, var(--c-rosa-calmo) 85%, var(--c-texto));
@@ -573,8 +565,8 @@ body {
 
 .project-card:nth-child(2)::before {
     aspect-ratio: 1;
-    border-color: var(--c-lavanda);
-    background: color-mix(in srgb, var(--c-lavanda) 24%, var(--c-pagina));
+    border-color: var(--c-rosa-niebla);
+    background: color-mix(in srgb, var(--c-rosa-niebla) 24%, var(--c-pagina));
     transform: translate(calc(var(--espacio-8) * -1), var(--espacio-8)) rotate(-2deg);
 }
 
@@ -773,7 +765,7 @@ body {
     margin-block: var(--espacio-64);
     padding-block: var(--espacio-64);
     padding-inline: clamp(var(--espacio-16), 4vw, var(--espacio-64));
-    background: var(--c-lavanda);
+    background: var(--c-rosa-niebla);
     color: var(--c-tinta);
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--espacio-64)), calc(100% - var(--espacio-64)) 100%, 0 100%);
 }
@@ -832,7 +824,7 @@ body {
     grid-row: 3;
     max-width: 25ch;
     margin-top: var(--espacio-32);
-    color: #692657;
+    color: var(--c-tinta);
     font-size: var(--fs-titulo-proyectos);
 }
 
@@ -843,7 +835,7 @@ body {
 
 .ventas-copy p {
     max-width: 54ch;
-    color: #3f314b;
+    color: var(--c-tinta-lectura);
     font-size: var(--fs-educacion-lectura);
     line-height: 1.6;
 }
@@ -1048,7 +1040,7 @@ body {
 
 .call-action .call-button:hover {
     border-color: var(--c-tinta);
-    background: #4a2553;
+    background: color-mix(in srgb, var(--c-tinta) 85%, var(--c-rosa));
     box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-texto);
     transform: translate(var(--espacio-4), var(--espacio-4));
 }
@@ -1410,7 +1402,7 @@ body {
 /* Atlas de interferencias: una sola trayectoria visual, no un kit de tarjetas.
    Esta capa compone las secciones existentes; el HTML conserva su orden y voz. */
 :root {
-    --atlas-linea: color-mix(in srgb, var(--c-lavanda) 22%, transparent);
+    --atlas-linea: color-mix(in srgb, var(--c-rosa-niebla) 22%, transparent);
 }
 
 .header {
@@ -1444,14 +1436,15 @@ body {
 .hero::before {
     position: absolute;
     z-index: -1;
-    inset: 0 0 3%;
-    background: repeating-radial-gradient(ellipse 49% 57% at 72% 50%,
-        transparent 0 2.25rem,
-        color-mix(in srgb, var(--c-rosa-aire) 23%, transparent) calc(2.25rem + 1px) calc(2.25rem + 2px),
-        transparent calc(2.25rem + 3px) 4.75rem);
-    mask-image: radial-gradient(ellipse 57% 65% at 72% 50%, black 12%, transparent 95%);
+    top: 16%;
+    right: 10%;
+    width: clamp(8rem, 28vw, 24rem);
+    height: 2px;
+    background: linear-gradient(90deg, transparent,
+        color-mix(in srgb, var(--c-rosa-aire) 22%, transparent) 35% 65%, transparent);
     content: '';
     pointer-events: none;
+    transform: rotate(-28deg);
 }
 
 .hero-text {
@@ -1545,7 +1538,7 @@ body {
     bottom: 0;
     left: 0;
     width: 2px;
-    background: linear-gradient(var(--c-rosa-vivo), var(--c-lavanda), transparent);
+    background: linear-gradient(var(--c-rosa-vivo), var(--c-rosa-niebla), transparent);
     content: '';
 }
 
@@ -1615,7 +1608,7 @@ body {
 }
 
 .project-card:nth-child(2) .project-media::after {
-    border-color: var(--c-lavanda);
+    border-color: var(--c-rosa-niebla);
 }
 
 .project-card:nth-child(3) .project-media::after {
@@ -1644,7 +1637,7 @@ body {
 }
 
 .project-card:nth-child(2) > .project-title {
-    color: var(--c-lavanda);
+    color: var(--c-rosa-niebla);
     font-size: clamp(2.5rem, 5.5vw, 6rem);
 }
 
@@ -1670,7 +1663,7 @@ body {
     justify-self: start;
     margin-left: clamp(0px, 20vw, 19rem);
     border-radius: 0;
-    background: var(--c-lavanda);
+    background: var(--c-rosa-niebla);
 }
 
 .ventas {
@@ -1730,7 +1723,7 @@ body {
     aspect-ratio: 1;
     background: repeating-radial-gradient(circle,
         transparent 0 3.5rem,
-        color-mix(in srgb, var(--c-lavanda) 22%, transparent) calc(3.5rem + 1px) calc(3.5rem + 2px),
+        color-mix(in srgb, var(--c-rosa-niebla) 22%, transparent) calc(3.5rem + 1px) calc(3.5rem + 2px),
         transparent calc(3.5rem + 3px) 6rem);
     mask-image: radial-gradient(circle, black 20%, transparent 74%);
     content: '';
@@ -1796,12 +1789,16 @@ body {
 .call-step--idea img,
 .call-step--launch img {
     border-radius: 0;
+    filter: saturate(.8);
     box-shadow: none;
     transform: none;
+    transition: filter 360ms var(--curva-interaccion),
+                transform 360ms var(--curva-interaccion);
 }
 
 .call-step picture {
     display: block;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -1823,6 +1820,25 @@ body {
     color: var(--c-rosa-aire);
     font-family: var(--fuente-texto);
     font-size: clamp(.875rem, 1.3vw, 1rem);
+    transition: color var(--duración-rapida) var(--curva-interaccion),
+                border-color var(--duración-rapida) var(--curva-interaccion);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .call-step picture:hover img {
+        filter: saturate(1.08) contrast(1.04);
+    }
+
+    .call-step picture:hover + span {
+        border-color: var(--c-rosa-vivo);
+        color: var(--c-blanco);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .call-step picture:hover img {
+        transform: scale(1.045);
+    }
 }
 
 .call-action {
@@ -1849,7 +1865,7 @@ body {
 }
 
 .call-action .call-button:focus-visible {
-    outline-color: var(--c-lavanda);
+    outline-color: var(--c-rosa-niebla);
 }
 
 .footer {
@@ -1900,7 +1916,9 @@ body {
     }
 
     .hero::before {
-        inset: 25% 0 0;
+        top: 58%;
+        right: 5%;
+        width: clamp(8rem, 35vw, 15rem);
     }
 }
 

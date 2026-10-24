@@ -1,6 +1,6 @@
 /*
- * Colores de uso en componentes. Los tonos de lectura y el rosa atenuado
- * salen de las bases de colores.css; el rosa vivo queda para el foco.
+ * Variantes funcionales basadas en la escala de colores.css.
+ * Ningún componente necesita introducir un segundo rosa base.
  */
 :root {
     --c-pagina: color-mix(in srgb, var(--c-fondo) 96%, var(--c-texto));
@@ -8,13 +8,12 @@
     --c-blanco: color-mix(in srgb, var(--c-texto) 88%, var(--c-fondo));
     --c-gris: var(--c-texto-suave);
     --c-gris-lectura: color-mix(in srgb, var(--c-gris) 60%, var(--c-blanco));
+    --c-tinta-lectura: color-mix(in srgb, var(--c-tinta) 85%, var(--c-texto));
     --c-rosa-vivo: var(--c-rosa);
-    --c-rosa-calmo: color-mix(in srgb, var(--c-rosa-suave) 54%, var(--c-texto));
-    --c-rosa-oscuro: var(--c-rosa-hondo);
     --c-sobre-rosa: var(--c-sobre-acento);
 
     --c-linea: color-mix(in srgb, var(--c-blanco) 10%, transparent);
-    --c-rosa-velo: color-mix(in srgb, var(--c-rosa-suave) 5%, var(--c-panel));
+    --c-rosa-velo: color-mix(in srgb, var(--c-rosa) 5%, var(--c-panel));
     --c-rosa-foto: color-mix(in srgb, var(--c-rosa-calmo) 42%, var(--c-pagina));
     --c-sombra-foto: color-mix(in srgb, var(--c-rosa-calmo) 24%, transparent);
     --c-rosa-hover: color-mix(in srgb, var(--c-rosa-calmo) 85%, var(--c-texto));

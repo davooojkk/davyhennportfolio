@@ -114,7 +114,7 @@
 
 .call-action .call-button:hover {
     border-color: var(--c-tinta);
-    background: #4a2553;
+    background: color-mix(in srgb, var(--c-tinta) 85%, var(--c-rosa));
     box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-texto);
     transform: translate(var(--espacio-4), var(--espacio-4));
 }

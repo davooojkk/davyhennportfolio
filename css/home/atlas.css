@@ -1,7 +1,7 @@
 /* Atlas de interferencias: una sola trayectoria visual, no un kit de tarjetas.
    Esta capa compone las secciones existentes; el HTML conserva su orden y voz. */
 :root {
-    --atlas-linea: color-mix(in srgb, var(--c-lavanda) 22%, transparent);
+    --atlas-linea: color-mix(in srgb, var(--c-rosa-niebla) 22%, transparent);
 }
 
 .header {
@@ -35,14 +35,15 @@
 .hero::before {
     position: absolute;
     z-index: -1;
-    inset: 0 0 3%;
-    background: repeating-radial-gradient(ellipse 49% 57% at 72% 50%,
-        transparent 0 2.25rem,
-        color-mix(in srgb, var(--c-rosa-aire) 23%, transparent) calc(2.25rem + 1px) calc(2.25rem + 2px),
-        transparent calc(2.25rem + 3px) 4.75rem);
-    mask-image: radial-gradient(ellipse 57% 65% at 72% 50%, black 12%, transparent 95%);
+    top: 16%;
+    right: 10%;
+    width: clamp(8rem, 28vw, 24rem);
+    height: 2px;
+    background: linear-gradient(90deg, transparent,
+        color-mix(in srgb, var(--c-rosa-aire) 22%, transparent) 35% 65%, transparent);
     content: '';
     pointer-events: none;
+    transform: rotate(-28deg);
 }
 
 .hero-text {
@@ -136,7 +137,7 @@
     bottom: 0;
     left: 0;
     width: 2px;
-    background: linear-gradient(var(--c-rosa-vivo), var(--c-lavanda), transparent);
+    background: linear-gradient(var(--c-rosa-vivo), var(--c-rosa-niebla), transparent);
     content: '';
 }
 
@@ -206,7 +207,7 @@
 }
 
 .project-card:nth-child(2) .project-media::after {
-    border-color: var(--c-lavanda);
+    border-color: var(--c-rosa-niebla);
 }
 
 .project-card:nth-child(3) .project-media::after {
@@ -235,7 +236,7 @@
 }
 
 .project-card:nth-child(2) > .project-title {
-    color: var(--c-lavanda);
+    color: var(--c-rosa-niebla);
     font-size: clamp(2.5rem, 5.5vw, 6rem);
 }
 
@@ -261,7 +262,7 @@
     justify-self: start;
     margin-left: clamp(0px, 20vw, 19rem);
     border-radius: 0;
-    background: var(--c-lavanda);
+    background: var(--c-rosa-niebla);
 }
 
 .ventas {
@@ -321,7 +322,7 @@
     aspect-ratio: 1;
     background: repeating-radial-gradient(circle,
         transparent 0 3.5rem,
-        color-mix(in srgb, var(--c-lavanda) 22%, transparent) calc(3.5rem + 1px) calc(3.5rem + 2px),
+        color-mix(in srgb, var(--c-rosa-niebla) 22%, transparent) calc(3.5rem + 1px) calc(3.5rem + 2px),
         transparent calc(3.5rem + 3px) 6rem);
     mask-image: radial-gradient(circle, black 20%, transparent 74%);
     content: '';
@@ -387,12 +388,16 @@
 .call-step--idea img,
 .call-step--launch img {
     border-radius: 0;
+    filter: saturate(.8);
     box-shadow: none;
     transform: none;
+    transition: filter 360ms var(--curva-interaccion),
+                transform 360ms var(--curva-interaccion);
 }
 
 .call-step picture {
     display: block;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -414,6 +419,25 @@
     color: var(--c-rosa-aire);
     font-family: var(--fuente-texto);
     font-size: clamp(.875rem, 1.3vw, 1rem);
+    transition: color var(--duración-rapida) var(--curva-interaccion),
+                border-color var(--duración-rapida) var(--curva-interaccion);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .call-step picture:hover img {
+        filter: saturate(1.08) contrast(1.04);
+    }
+
+    .call-step picture:hover + span {
+        border-color: var(--c-rosa-vivo);
+        color: var(--c-blanco);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .call-step picture:hover img {
+        transform: scale(1.045);
+    }
 }
 
 .call-action {
@@ -440,7 +464,7 @@
 }
 
 .call-action .call-button:focus-visible {
-    outline-color: var(--c-lavanda);
+    outline-color: var(--c-rosa-niebla);
 }
 
 .footer {
@@ -491,7 +515,9 @@
     }
 
     .hero::before {
-        inset: 25% 0 0;
+        top: 58%;
+        right: 5%;
+        width: clamp(8rem, 35vw, 15rem);
     }
 }
 

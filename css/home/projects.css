@@ -73,8 +73,8 @@
 
 .project-card:nth-child(2)::before {
     aspect-ratio: 1;
-    border-color: var(--c-lavanda);
-    background: color-mix(in srgb, var(--c-lavanda) 24%, var(--c-pagina));
+    border-color: var(--c-rosa-niebla);
+    background: color-mix(in srgb, var(--c-rosa-niebla) 24%, var(--c-pagina));
     transform: translate(calc(var(--espacio-8) * -1), var(--espacio-8)) rotate(-2deg);
 }
 

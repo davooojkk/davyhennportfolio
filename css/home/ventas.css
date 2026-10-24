@@ -12,7 +12,7 @@
     margin-block: var(--espacio-64);
     padding-block: var(--espacio-64);
     padding-inline: clamp(var(--espacio-16), 4vw, var(--espacio-64));
-    background: var(--c-lavanda);
+    background: var(--c-rosa-niebla);
     color: var(--c-tinta);
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--espacio-64)), calc(100% - var(--espacio-64)) 100%, 0 100%);
 }
@@ -71,7 +71,7 @@
     grid-row: 3;
     max-width: 25ch;
     margin-top: var(--espacio-32);
-    color: #692657;
+    color: var(--c-tinta);
     font-size: var(--fs-titulo-proyectos);
 }
 
@@ -82,7 +82,7 @@
 
 .ventas-copy p {
     max-width: 54ch;
-    color: #3f314b;
+    color: var(--c-tinta-lectura);
     font-size: var(--fs-educacion-lectura);
     line-height: 1.6;
 }
