@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Davy Henn - Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Sora:wght@400;500;600;700;800&amp;display=swap">
-    <link rel="stylesheet" href="./css/style.css">
+    <meta name="description" content="Soy Davy Henn. Desarrollo sitios y aplicaciones web para ayudar a negocios a organizarse y llegar a sus clientes. Conocé mis proyectos y escribime.">
+    <link rel="canonical" href="https://davooojkk.github.io/davyhennportfolio/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Davy Henn - Portfolio">
+    <meta property="og:description" content="Sitios y aplicaciones web para ayudar a negocios a organizarse y llegar a sus clientes.">
+    <meta property="og:url" content="https://davooojkk.github.io/davyhennportfolio/">
+    <meta property="og:image" content="https://davooojkk.github.io/davyhennportfolio/imgs/home/hero-davy.png">
+    <meta property="og:image:alt" content="Retrato de Davy Henn">
+    <link rel="preload" href="./imgs/fonts/sora-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" type="image/webp" imagesrcset="./imgs/home/hero-davy-480.webp 480w, ./imgs/home/hero-davy-800.webp 800w, ./imgs/home/hero-davy-1199.webp 1199w" imagesizes="(max-width: 520px) calc(100vw - 2rem), (max-width: 880px) min(calc(100vw - 4rem), 40rem), min(48vw, 40rem)" fetchpriority="high">
+    <link rel="stylesheet" href="./css/site.css">
     <script type="module" src="./js/main.js"></script>
 </head>
 <body>
@@ -41,17 +48,16 @@
     <main id="main-content">
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-text">
-                <h1 class="hero-heading" id="hero-title">El software te puede ayudar a ganar dinero.</h1>
+                <h1 class="hero-heading" id="hero-title"><span>El software</span> <span>te puede ayudar</span> <span>a ganar dinero.</span></h1>
                 <p>¿Alguna vez lo pensaste?</p>
                 <p>¡Mi nombre es Davy Henn y puedo ayudarte con eso!</p>
                 <a href="mailto:davyhenn@outlook.com" class="call-button">¡Quiero dar el salto!</a>
             </div>
             <div class="hero-img">
-                <img src="./imgs/home/hero-davy.png" alt="Retrato de Davy Henn" width="1199" height="1312" fetchpriority="high">
-            </div>
-            <div class="hero-bubbles bubbles" aria-hidden="true">
-                <span class="bubble bubble--hero-large"></span>
-                <span class="bubble bubble--hero-small"></span>
+                <picture>
+                    <source type="image/webp" srcset="./imgs/home/hero-davy-480.webp 480w, ./imgs/home/hero-davy-800.webp 800w, ./imgs/home/hero-davy-1199.webp 1199w" sizes="(max-width: 520px) calc(100vw - 2rem), (max-width: 880px) min(calc(100vw - 4rem), 40rem), min(48vw, 40rem)">
+                    <img src="./imgs/home/hero-davy.png" alt="Retrato de Davy Henn" width="1199" height="1312" fetchpriority="high" decoding="async">
+                </picture>
             </div>
         </section>
 
@@ -60,16 +66,12 @@
                 <h2 class="title-one" id="projects-title">¡Aquí tenés ejemplos de clientes que ya fueron ayudados!</h2>
                 <p class="projects-demo-note">Don Quijote es un sitio para un cliente; Dollivera, una aplicación web con gastos de ejemplo en las capturas; Bikcraft, un ejercicio del curso de Origamid.</p>
             </div>
-            <div class="projects-bubbles bubbles" aria-hidden="true">
-                <span class="bubble bubble--projects-large"></span>
-                <span class="bubble bubble--projects-small"></span>
-            </div>
             <div class="projects-grid">
                 <article class="project-card" aria-labelledby="project-1-title">
                     <div class="project-media" role="group" aria-label="Capturas de Don Quijote Restaurant">
-                        <img class="is-current" src="./imgs/home/proyecto-donquijote-portada.webp" alt="Portada de Don Quijote Restaurant con acceso a la carta y fotografías de sus platos" width="1200" height="900" loading="lazy">
-                        <img src="./imgs/home/proyecto-donquijote-carta.webp" alt="Carta digital de Don Quijote con categorías y precios de pizzas" width="1200" height="900" loading="lazy" aria-hidden="true">
-                        <img src="./imgs/home/proyecto-donquijote-horarios.webp" alt="Horarios del local y del delivery, junto a las opciones de pago" width="1200" height="900" loading="lazy" aria-hidden="true">
+                        <img class="is-current" src="./imgs/home/proyecto-donquijote-portada-800.webp" srcset="./imgs/home/proyecto-donquijote-portada-480.webp 480w, ./imgs/home/proyecto-donquijote-portada-800.webp 800w, ./imgs/home/proyecto-donquijote-portada.webp 1200w" sizes="(max-width: 520px) calc(100vw - 2rem), (max-width: 900px) 80vw, min(60vw, 45rem)" alt="Portada de Don Quijote Restaurant con acceso a la carta y fotografías de sus platos" width="1200" height="900" loading="lazy">
+                        <img data-src="./imgs/home/proyecto-donquijote-carta.webp" alt="Carta digital de Don Quijote con categorías y precios de pizzas" width="1200" height="900" loading="lazy" aria-hidden="true">
+                        <img data-src="./imgs/home/proyecto-donquijote-horarios.webp" alt="Horarios del local y del delivery, junto a las opciones de pago" width="1200" height="900" loading="lazy" aria-hidden="true">
                         <div class="project-gallery-controls">
                             <button type="button" class="project-gallery-prev" aria-label="Captura anterior">‹</button>
                             <span class="project-gallery-count" aria-live="polite">1 / 3</span>
@@ -82,9 +84,9 @@
                 </article>
                 <article class="project-card" aria-labelledby="project-2-title">
                     <div class="project-media" role="group" aria-label="Capturas de Dollivera Finances">
-                        <img class="is-current" src="./imgs/home/proyecto-dollivera-formulario.webp" alt="Formulario para registrar gastos en Dollivera Finances" width="1100" height="1100" loading="lazy">
-                        <img src="./imgs/home/proyecto-dollivera-registros.webp" alt="Listado de gastos de ejemplo en Dollivera, con importes y categorías" width="1100" height="1100" loading="lazy" aria-hidden="true">
-                        <img src="./imgs/home/proyecto-dollivera-adaptable.webp" alt="Vista adaptable del formulario de gastos de Dollivera" width="1100" height="1100" loading="lazy" aria-hidden="true">
+                        <img class="is-current" src="./imgs/home/proyecto-dollivera-formulario-800.webp" srcset="./imgs/home/proyecto-dollivera-formulario-480.webp 480w, ./imgs/home/proyecto-dollivera-formulario-800.webp 800w, ./imgs/home/proyecto-dollivera-formulario.webp 1100w" sizes="(max-width: 520px) calc(100vw - 2rem), (max-width: 900px) 80vw, min(43vw, 32rem)" alt="Formulario para registrar gastos en Dollivera Finances" width="1100" height="1100" loading="lazy">
+                        <img data-src="./imgs/home/proyecto-dollivera-registros.webp" alt="Listado de gastos de ejemplo en Dollivera, con importes y categorías" width="1100" height="1100" loading="lazy" aria-hidden="true">
+                        <img data-src="./imgs/home/proyecto-dollivera-adaptable.webp" alt="Vista adaptable del formulario de gastos de Dollivera" width="1100" height="1100" loading="lazy" aria-hidden="true">
                         <div class="project-gallery-controls">
                             <button type="button" class="project-gallery-prev" aria-label="Captura anterior">‹</button>
                             <span class="project-gallery-count" aria-live="polite">1 / 3</span>
@@ -97,9 +99,9 @@
                 </article>
                 <article class="project-card" aria-labelledby="project-3-title">
                     <div class="project-media" role="group" aria-label="Capturas del proyecto de estudio Bikcraft">
-                        <img class="is-current" src="./imgs/home/proyecto-bikcraft-portada.webp" alt="Portada del proyecto Bikcraft con bicicleta y presentación" width="1280" height="720" loading="lazy">
-                        <img src="./imgs/home/proyecto-bikcraft-catalogo.webp" alt="Catálogo de bicicletas Bikcraft con el modelo Nimbus Stark" width="1600" height="900" loading="lazy" aria-hidden="true">
-                        <img src="./imgs/home/proyecto-bikcraft-producto.webp" alt="Ficha de Nimbus Stark con sus características y botón de compra" width="1600" height="900" loading="lazy" aria-hidden="true">
+                        <img class="is-current" src="./imgs/home/proyecto-bikcraft-portada-800.webp" srcset="./imgs/home/proyecto-bikcraft-portada-480.webp 480w, ./imgs/home/proyecto-bikcraft-portada-800.webp 800w, ./imgs/home/proyecto-bikcraft-portada.webp 1280w" sizes="(max-width: 520px) calc(100vw - 2rem), (max-width: 900px) 80vw, min(70vw, 52rem)" alt="Portada del proyecto Bikcraft con bicicleta y presentación" width="1280" height="720" loading="lazy">
+                        <img data-src="./imgs/home/proyecto-bikcraft-catalogo.webp" alt="Catálogo de bicicletas Bikcraft con el modelo Nimbus Stark" width="1600" height="900" loading="lazy" aria-hidden="true">
+                        <img data-src="./imgs/home/proyecto-bikcraft-producto.webp" alt="Ficha de Nimbus Stark con sus características y botón de compra" width="1600" height="900" loading="lazy" aria-hidden="true">
                         <div class="project-gallery-controls">
                             <button type="button" class="project-gallery-prev" aria-label="Captura anterior">‹</button>
                             <span class="project-gallery-count" aria-live="polite">1 / 3</span>
@@ -172,15 +174,24 @@
             <h2 class="call-heading" id="call-title">Dar un salto a tu negocio está a tu alcance</h2>
             <ol class="call-steps">
                 <li class="call-step call-step--contact">
-                    <img src="./imgs/home/paso-conversar.jpg" alt="Dos personas conversando en un café" width="1000" height="750" loading="lazy" decoding="async">
+                    <picture>
+                        <source type="image/webp" srcset="./imgs/home/paso-conversar-600.webp 600w, ./imgs/home/paso-conversar-1000.webp 1000w" sizes="(max-width: 720px) calc(100vw - 4rem), (max-width: 1100px) 45vw, 26vw">
+                        <img src="./imgs/home/paso-conversar.jpg" alt="Dos personas conversando en un café" width="1000" height="750" loading="lazy" decoding="async">
+                    </picture>
                     <span>1. Escribeme</span>
                 </li>
                 <li class="call-step call-step--idea">
-                    <img src="./imgs/home/paso-idear.jpg" alt="Bocetos de una página web dibujados sobre papel" width="1100" height="825" loading="lazy" decoding="async">
+                    <picture>
+                        <source type="image/webp" srcset="./imgs/home/paso-idear-600.webp 600w, ./imgs/home/paso-idear-1000.webp 1000w" sizes="(max-width: 720px) calc(100vw - 4rem), (max-width: 1100px) 45vw, min(42vw, 32rem)">
+                        <img src="./imgs/home/paso-idear.jpg" alt="Bocetos de una página web dibujados sobre papel" width="1100" height="825" loading="lazy" decoding="async">
+                    </picture>
                     <span>2. Elaboramos una idea</span>
                 </li>
                 <li class="call-step call-step--launch">
-                    <img src="./imgs/home/paso-lanzar.jpg" alt="Local abierto de noche con un letrero iluminado" width="1100" height="733" loading="lazy" decoding="async">
+                    <picture>
+                        <source type="image/webp" srcset="./imgs/home/paso-lanzar-600.webp 600w, ./imgs/home/paso-lanzar-1000.webp 1000w" sizes="(max-width: 720px) calc(100vw - 4rem), (max-width: 1100px) 90vw, 34vw">
+                        <img src="./imgs/home/paso-lanzar.jpg" alt="Local abierto de noche con un letrero iluminado" width="1100" height="733" loading="lazy" decoding="async">
+                    </picture>
                     <span>3. ¡Y lanzamos tu proyecto!</span>
                 </li>
             </ol>

@@ -74,6 +74,12 @@
     pointer-events: none;
 }
 
+.hero-img picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .hero-img img {
     width: 100%;
     height: 100%;
@@ -82,37 +88,21 @@
     filter: drop-shadow(0 var(--espacio-16) var(--espacio-32) var(--c-sombra-foto));
 }
 
-/* Una sola entrada: la barra se abre y después aparece el retrato. */
+/* La barra entra detrás del retrato; la foto LCP nunca espera una animación. */
 @media (prefers-reduced-motion: no-preference) {
     .hero[data-animacion="entrada"] .hero-img::before {
         animation: abrir-barra 850ms var(--curva-interaccion) both;
-    }
-
-    .hero[data-animacion="entrada"] .hero-img img {
-        animation: entrar-retrato 720ms 130ms var(--curva-interaccion) both;
     }
 }
 
 @keyframes abrir-barra {
     from {
-        clip-path: polygon(58% 0, 62% 0, 34% 100%, 30% 100%);
+        clip-path: polygon(46% 0, 48% 4%, 52% 39%, 56% 95%, 49% 100%, 44% 68%, 45% 20%);
         opacity: .25;
     }
 
     to {
-        clip-path: polygon(26% 0, 100% 0, 68% 100%, 0 100%);
+        clip-path: polygon(20% 0, 86% 4%, 100% 39%, 82% 95%, 28% 100%, 0 68%, 6% 20%);
         opacity: 1;
-    }
-}
-
-@keyframes entrar-retrato {
-    from {
-        opacity: 0;
-        transform: translateY(var(--espacio-16)) scale(.985);
-    }
-
-    to {
-        opacity: 1;
-        transform: none;
     }
 }

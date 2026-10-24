@@ -1,6 +1,6 @@
 /*
- * Entrada única. Orden: paleta > escalas > base > componentes > secciones
- * > responsive. Para variar color o tipo, empezar por basics/.
+ * Fuente modular del CSS publicado en site.css. Editar aquí y ejecutar
+ * node scripts/build-css.mjs antes de publicar.
  */
 @import url('./basics/colores.css');
 @import url('./basics/tema.css');
@@ -12,10 +12,10 @@
 @import url('./home/header.css');
 @import url('./home/hero.css');
 @import url('./home/projects.css');
-@import url('./home/bubbles.css');
 @import url('./home/ventas.css');
 @import url('./home/education.css');
 @import url('./home/call.css');
 @import url('./home/footer.css');
 
 @import url('./basics/responsive.css');
+@import url('./home/atlas.css');

@@ -38,6 +38,14 @@
     min-width: 0;
 }
 
+/* Las piezas giradas y sus planos de color salen ligeramente de su columna.
+   Reservar espacio real entre ellas evita que se monten unas sobre otras. */
+@media (min-width: 901px) {
+    .projects-grid {
+        column-gap: calc(var(--espacio-32) + var(--espacio-16));
+    }
+}
+
 .project-card {
     position: relative;
     isolation: isolate;

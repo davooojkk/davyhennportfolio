@@ -1,3 +1,28 @@
+/* Fuentes locales: sin conexión adicional a Google Fonts ni cambio de familias. */
+@font-face {
+    font-family: Sora;
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url('../../imgs/fonts/sora-latin-variable.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../imgs/fonts/space-mono-regular-latin.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../../imgs/fonts/space-mono-bold-latin.woff2') format('woff2');
+}
+
 /* Sora para leer sin fatiga; Space Mono solo en la navegación y metadatos. */
 :root {
     --fuente-titulo: 'Sora', system-ui, sans-serif;

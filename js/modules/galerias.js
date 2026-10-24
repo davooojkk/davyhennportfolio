@@ -47,6 +47,11 @@ export function registrarGalerias(movimientoReducido, punteroPreciso) {
             const siguiente = (indice + direccion + fotos.length) % fotos.length;
             const saliente = fotos[indice];
             const entrante = fotos[siguiente];
+            // Las capturas secundarias solo se descargan al abrir cada carta.
+            if (entrante.dataset.src) {
+                entrante.src = entrante.dataset.src;
+                delete entrante.dataset.src;
+            }
             entrante.loading = 'eager';
 
             try {

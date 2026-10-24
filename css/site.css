@@ -1,0 +1,2045 @@
+/* Generado por node scripts/build-css.mjs. Editar css/basics/ o css/home/. */
+
+/* ./basics/colores.css */
+/*
+    Paleta de la identidad Davy / davotech:
+    Bases originales de la marca: oscuro, blanco y rosa. Para ajustar
+    la intensidad visible de la web, ver las variantes en tema.css.
+*/
+
+:root {
+    /* --- Bases: fondo oscuro, texto blanco --- */
+    --c-fondo: #0d0d0d;
+    --c-fondo-hondo: #0a0f12;   /* reserva para superficies profundas */
+    --c-superficie: #141414;    /* base de paneles */
+    --c-texto: #ffffff;
+    --c-texto-suave: #a1a1aa;   /* texto secundario (AA sobre oscuro) */
+
+    /* --- Identidad rosa DavoTech --- */
+    --c-rosa: #f808b8;          /* acento vivo: enlaces, foco, detalles */
+    --c-rosa-hondo: #db079f;    /* rosa profundo: superficies con texto blanco (AA) */
+    --c-rosa-suave: #f82098;    /* segundo rosa de la marca */
+    --c-sobre-acento: #0d0d0d;              /* texto encima del rosa vivo */
+
+    /* Superficies luminosas: pausas de color sin sustituir al rosa de marca. */
+    --c-lavanda: #dec7ff;
+    --c-rosa-aire: #ffc1e5;
+    --c-tinta: #21142b;
+}
+
+/* ./basics/tema.css */
+/*
+ * Colores de uso en componentes. Los tonos de lectura y el rosa atenuado
+ * salen de las bases de colores.css; el rosa vivo queda para el foco.
+ */
+:root {
+    --c-pagina: color-mix(in srgb, var(--c-fondo) 96%, var(--c-texto));
+    --c-panel: color-mix(in srgb, var(--c-superficie) 95%, var(--c-texto));
+    --c-blanco: color-mix(in srgb, var(--c-texto) 88%, var(--c-fondo));
+    --c-gris: var(--c-texto-suave);
+    --c-gris-lectura: color-mix(in srgb, var(--c-gris) 60%, var(--c-blanco));
+    --c-rosa-vivo: var(--c-rosa);
+    --c-rosa-calmo: color-mix(in srgb, var(--c-rosa-suave) 54%, var(--c-texto));
+    --c-rosa-oscuro: var(--c-rosa-hondo);
+    --c-sobre-rosa: var(--c-sobre-acento);
+
+    --c-linea: color-mix(in srgb, var(--c-blanco) 10%, transparent);
+    --c-rosa-velo: color-mix(in srgb, var(--c-rosa-suave) 5%, var(--c-panel));
+    --c-rosa-foto: color-mix(in srgb, var(--c-rosa-calmo) 42%, var(--c-pagina));
+    --c-sombra-foto: color-mix(in srgb, var(--c-rosa-calmo) 24%, transparent);
+    --c-rosa-hover: color-mix(in srgb, var(--c-rosa-calmo) 85%, var(--c-texto));
+    --c-rosa-tinte-hover: color-mix(in srgb, var(--c-rosa-calmo) 12%, var(--c-panel));
+    --c-rosa-borde-hover: color-mix(in srgb, var(--c-rosa-calmo) 45%, var(--c-linea));
+    --c-enlace-hover: color-mix(in srgb, var(--c-blanco) 73%, var(--c-rosa-calmo));
+    --c-footer-hover: color-mix(in srgb, var(--c-gris) 65%, var(--c-rosa-calmo));
+}
+
+::selection {
+    background: var(--c-rosa-calmo);
+    color: var(--c-sobre-rosa);
+}
+
+/* ./basics/tokens.css */
+/* Progresión binaria: valores equivalentes a 2, 4, 8, 16, 32 y 64 px
+   con tamaño raíz de 16 px. En rem también crecen al ampliar el texto. */
+:root {
+    --espacio-2: .125rem;
+    --espacio-4: .25rem;
+    --espacio-8: .5rem;
+    --espacio-16: 1rem;
+    --espacio-32: 2rem;
+    --espacio-64: 4rem;
+
+    --ancho-max: 78rem;
+    --alto-hero: clamp(36rem, 92svh, 56rem);
+
+    --radio-sm: .5rem;
+    --radio-md: 1rem;
+    --radio-full: 100vmax;
+    --grosor-linea: 1px;
+
+    --duración-rapida: 240ms;
+    --curva-interaccion: cubic-bezier(.22, 1, .36, 1);
+}
+
+/* ./basics/reset.css */
+/* Base del documento: sin layouts implícitos que se filtren entre módulos. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 0;
+    margin: 0;
+    background: var(--c-pagina);
+    /* El PNG ya es translúcido: repetirlo a escala nativa mantiene
+       el carbón de la marca visible entre las curvas de nivel. */
+    background-image: url('../imgs/sources/cartographer.png');
+    background-repeat: repeat;
+    color: var(--c-blanco);
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+img {
+    height: auto;
+}
+
+p,
+h1,
+h2,
+h3 {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+address {
+    font-style: normal;
+}
+
+:focus-visible {
+    outline: 2px solid var(--c-rosa-vivo);
+    outline-offset: var(--espacio-4);
+}
+
+/* Contenedor principal, también para los dos extremos de la página. */
+main,
+.header,
+.footer {
+    width: min(calc(100% - var(--espacio-32) * 2), var(--ancho-max));
+    margin-inline: auto;
+}
+
+/* ./basics/tipografia.css */
+/* Fuentes locales: sin conexión adicional a Google Fonts ni cambio de familias. */
+@font-face {
+    font-family: Sora;
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url('../imgs/fonts/sora-latin-variable.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../imgs/fonts/space-mono-regular-latin.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../imgs/fonts/space-mono-bold-latin.woff2') format('woff2');
+}
+
+/* Sora para leer sin fatiga; Space Mono solo en la navegación y metadatos. */
+:root {
+    --fuente-titulo: 'Sora', system-ui, sans-serif;
+    --fuente-texto: 'Space Mono', ui-monospace, monospace;
+
+    --fs-hero: clamp(2.75rem, 5vw, 5.5rem);
+    --fs-titulo: clamp(2rem, 4.3vw, 4.25rem);
+    --fs-titulo-proyectos: clamp(2rem, 3.4vw, 3.4rem);
+    --fs-proyecto: clamp(1.5rem, 2.6vw, 2.35rem);
+    --fs-educacion-titulo: clamp(1.75rem, 3vw, 2.75rem);
+    --fs-educacion-lectura: clamp(1.0625rem, 1.5vw, 1.25rem);
+    --fs-subtitulo: clamp(1.3rem, 2vw, 1.9rem);
+    --fs-lead: clamp(1rem, 1.35vw, 1.2rem);
+    --fs-cuerpo: clamp(.94rem, 1vw, 1rem);
+    --fs-detalle: .83rem;
+}
+
+body {
+    font-family: var(--fuente-titulo);
+    font-size: var(--fs-cuerpo);
+    line-height: 1.65;
+}
+
+/* Roles tipográficos de los encabezados semánticos. */
+.hero-text > .hero-heading,
+.projects-intro > .title-one,
+.ventas > .ventas-heading,
+.education > .education-heading,
+.call > .call-heading {
+    font-family: var(--fuente-titulo);
+    font-weight: 700;
+    line-height: 1.13;
+    letter-spacing: -.04em;
+    text-wrap: balance;
+}
+
+.hero-text > .hero-heading {
+    font-size: var(--fs-hero);
+    font-weight: 700;
+}
+
+.projects-intro > .title-one {
+    font-size: var(--fs-titulo-proyectos);
+}
+
+.ventas > .ventas-heading--benefits,
+.call > .call-heading {
+    font-size: var(--fs-titulo);
+}
+
+.ventas > .ventas-heading--audience,
+.education > .education-heading--learning,
+.education > .education-heading--future {
+    font-size: var(--fs-subtitulo);
+}
+
+.education > .education-heading--origin {
+    font-size: var(--fs-educacion-titulo);
+}
+
+.hero-text > p:nth-child(2) {
+    font-family: var(--fuente-titulo);
+    font-size: var(--fs-subtitulo);
+    font-weight: 600;
+}
+
+.hero-text > p:nth-child(3) {
+    font-size: var(--fs-lead);
+}
+
+.project-card > .project-title {
+    font-family: var(--fuente-titulo);
+    font-size: var(--fs-proyecto);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* ./basics/componentes.css */
+/* Botones y enlaces usados por distintas secciones. */
+.skip-link {
+    position: absolute;
+    z-index: 10;
+    top: var(--espacio-16);
+    left: var(--espacio-16);
+    padding: var(--espacio-8) var(--espacio-16);
+    border-radius: var(--radio-sm);
+    background: var(--c-rosa-calmo);
+    color: var(--c-sobre-rosa);
+    font-weight: 700;
+    transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+    outline-color: var(--c-blanco);
+    transform: none;
+}
+
+.call-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 3rem;
+    padding: var(--espacio-8) var(--espacio-16);
+    border: var(--grosor-linea) solid var(--c-rosa-calmo);
+    border-radius: var(--radio-full);
+    background: var(--c-rosa-calmo);
+    color: var(--c-sobre-rosa);
+    font-size: var(--fs-cuerpo);
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    overflow-wrap: anywhere;
+    transition: background-color var(--duración-rapida) var(--curva-interaccion),
+                border-color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.call-button:hover {
+    background-color: var(--c-rosa-hover);
+    border-color: var(--c-rosa-hover);
+}
+
+.call-button:focus-visible {
+    outline-color: var(--c-blanco);
+}
+
+/* Enlaces de lectura: contraste suficiente y subrayado visible. */
+.education a:not(.call-button),
+.project-card a:not(.call-button) {
+    color: var(--c-rosa-calmo);
+    text-decoration: underline;
+    text-decoration-thickness: var(--grosor-linea);
+    text-underline-offset: .25em;
+    transition: color var(--duración-rapida) var(--curva-interaccion),
+                text-decoration-color var(--duración-rapida) var(--curva-interaccion),
+                text-underline-offset var(--duración-rapida) var(--curva-interaccion);
+}
+
+.education a:not(.call-button):hover {
+    color: var(--c-rosa-hover);
+    text-decoration-color: var(--c-rosa-hover);
+    text-underline-offset: .36em;
+}
+
+/* ./home/header.css */
+/* Marca a la izquierda; redes y contacto quedan en su propia navegación. */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espacio-32);
+    padding-block: var(--espacio-16);
+    border-bottom: var(--grosor-linea) solid var(--c-linea);
+}
+
+.header-brand {
+    flex: none;
+    font-family: var(--fuente-titulo);
+    font-size: var(--fs-subtitulo);
+    font-weight: 800;
+    letter-spacing: -.08em;
+    line-height: 1;
+    transition: color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.header-brand span {
+    padding-left: var(--espacio-2);
+    color: var(--c-rosa-calmo);
+}
+
+.header-brand:hover {
+    color: var(--c-enlace-hover);
+}
+
+.header nav {
+    min-width: 0;
+}
+
+.header-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--espacio-16);
+}
+
+.header-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espacio-8);
+    min-height: 44px;
+    font-family: var(--fuente-texto);
+    font-size: var(--fs-detalle);
+    font-weight: 700;
+    transition: color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.header-list a:hover {
+    color: var(--c-enlace-hover);
+}
+
+.header-list img {
+    width: 1.15rem;
+    height: 1.15rem;
+    filter: invert(1);
+    opacity: .8;
+    transition: opacity var(--duración-rapida) var(--curva-interaccion);
+}
+
+.header-list a:hover img {
+    opacity: 1;
+}
+
+/* ./home/hero.css */
+/* El retrato interrumpe una luz oblicua que retoma la barra de la marca. */
+.hero {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: var(--espacio-32);
+    min-height: min(98svh, 58rem);
+    margin-bottom: var(--espacio-64);
+    padding-top: var(--espacio-32);
+}
+
+.hero-text {
+    min-width: 0;
+}
+
+.hero-text > .hero-heading {
+    max-width: 13ch;
+    font-weight: 800;
+    letter-spacing: -.065em;
+    line-height: 1.05;
+}
+
+.hero-text > p:nth-child(2) {
+    max-width: 28ch;
+    margin-top: var(--espacio-16);
+    color: var(--c-rosa-calmo);
+}
+
+.hero-text > p:nth-child(3) {
+    max-width: 38ch;
+    margin-top: var(--espacio-16);
+    color: var(--c-gris);
+}
+
+.hero-text .call-button {
+    margin-top: var(--espacio-32);
+    border-radius: var(--radio-sm);
+    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-rosa-foto);
+    transform: rotate(-2deg);
+    transition: transform var(--duración-rapida) var(--curva-interaccion),
+                box-shadow var(--duración-rapida) var(--curva-interaccion),
+                background-color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.hero-text .call-button:hover {
+    box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-rosa-foto);
+    transform: translate(var(--espacio-4), var(--espacio-4)) rotate(0);
+}
+
+.hero-img {
+    position: relative;
+    isolation: isolate;
+    width: calc(100% + var(--espacio-32));
+    aspect-ratio: 1199 / 1312;
+    max-height: var(--alto-hero);
+    min-width: 0;
+    margin-left: calc(var(--espacio-32) * -1);
+    align-self: end;
+    /* Foto y plano de luz se apagan juntos: bordes inferiores redondeados,
+       sin transparentar la barra rosa a través de la campera. */
+    mask-image: radial-gradient(ellipse 85% 92% at 50% 8%, black 65%, transparent 100%);
+}
+
+.hero-img::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: '';
+    background: linear-gradient(150deg, var(--c-rosa-foto), var(--c-rosa-velo) 78%);
+    clip-path: polygon(26% 0, 100% 0, 68% 100%, 0 100%);
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 78%, transparent);
+    pointer-events: none;
+}
+
+.hero-img picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    filter: drop-shadow(0 var(--espacio-16) var(--espacio-32) var(--c-sombra-foto));
+}
+
+/* La barra entra detrás del retrato; la foto LCP nunca espera una animación. */
+@media (prefers-reduced-motion: no-preference) {
+    .hero[data-animacion="entrada"] .hero-img::before {
+        animation: abrir-barra 850ms var(--curva-interaccion) both;
+    }
+}
+
+@keyframes abrir-barra {
+    from {
+        clip-path: polygon(46% 0, 48% 4%, 52% 39%, 56% 95%, 49% 100%, 44% 68%, 45% 20%);
+        opacity: .25;
+    }
+
+    to {
+        clip-path: polygon(20% 0, 86% 4%, 100% 39%, 82% 95%, 28% 100%, 0 68%, 6% 20%);
+        opacity: 1;
+    }
+}
+
+/* ./home/projects.css */
+/*
+ * Mural de trabajos: tamaños y desplazamientos distintos en lugar de
+ * tres filas iguales. El orden visual sigue el orden del HTML.
+ */
+.projects {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 0;
+    gap: var(--espacio-64);
+    padding-block: var(--espacio-64);
+    border-top: var(--grosor-linea) solid var(--c-linea);
+}
+
+.projects-intro {
+    display: grid;
+    justify-items: start;
+    gap: var(--espacio-16);
+}
+
+.projects-intro > .title-one {
+    max-width: 20ch;
+    line-height: 1.08;
+}
+
+.projects-demo-note {
+    max-width: 55ch;
+    color: var(--c-gris-lectura);
+    font-size: var(--fs-cuerpo);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--espacio-32) var(--espacio-16);
+    min-width: 0;
+}
+
+/* Las piezas giradas y sus planos de color salen ligeramente de su columna.
+   Reservar espacio real entre ellas evita que se monten unas sobre otras. */
+@media (min-width: 901px) {
+    .projects-grid {
+        column-gap: calc(var(--espacio-32) + var(--espacio-16));
+    }
+}
+
+.project-card {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    grid-column: 1 / span 7;
+}
+
+/* Color visible detrás del recorte: cada foto parece una pieza del mural. */
+.project-card::before {
+    position: absolute;
+    z-index: -1;
+    top: var(--espacio-8);
+    left: var(--espacio-8);
+    width: calc(100% - var(--espacio-8));
+    aspect-ratio: 4 / 3;
+    border: var(--espacio-4) solid var(--c-rosa-calmo);
+    border-radius: var(--radio-sm);
+    background: color-mix(in srgb, var(--c-rosa-calmo) 24%, var(--c-pagina));
+    content: '';
+    transform: translate(var(--espacio-8), var(--espacio-8)) rotate(2deg);
+    pointer-events: none;
+}
+
+.project-card:nth-child(2)::before {
+    aspect-ratio: 1;
+    border-color: var(--c-lavanda);
+    background: color-mix(in srgb, var(--c-lavanda) 24%, var(--c-pagina));
+    transform: translate(calc(var(--espacio-8) * -1), var(--espacio-8)) rotate(-2deg);
+}
+
+.project-card:nth-child(3)::before {
+    aspect-ratio: 16 / 9;
+    border-color: var(--c-rosa-aire);
+    background: color-mix(in srgb, var(--c-rosa-aire) 24%, var(--c-pagina));
+}
+
+.project-card:nth-child(2) {
+    grid-column: 8 / -1;
+    margin-top: var(--espacio-64);
+}
+
+.project-card:nth-child(3) {
+    grid-column: 3 / span 8;
+}
+
+.project-media {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radio-sm);
+    background: var(--c-panel);
+    transform: rotate(-1.5deg);
+    transition: transform 420ms var(--curva-interaccion);
+}
+
+.project-card:nth-child(2) .project-media {
+    aspect-ratio: 1;
+    transform: rotate(1.5deg);
+}
+
+.project-card:nth-child(3) .project-media {
+    aspect-ratio: 16 / 9;
+    transform: rotate(-.8deg);
+}
+
+.project-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    visibility: hidden;
+}
+
+/* La primera foto queda visible incluso si JavaScript no llega a ejecutarse. */
+.project-media img.is-current,
+.project-media img.is-incoming,
+.project-media img.is-outgoing {
+    visibility: visible;
+}
+
+.project-media img.is-incoming {
+    z-index: 1;
+}
+
+.project-media img.is-outgoing {
+    z-index: 2;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .project-media[data-gallery-ready]:hover {
+        transform: rotate(0) scale(1.012);
+    }
+}
+
+.project-gallery-controls {
+    position: absolute;
+    z-index: 3;
+    right: var(--espacio-16);
+    bottom: min(calc(var(--espacio-32) + var(--espacio-16)), 48px);
+    display: none;
+    align-items: center;
+    gap: var(--espacio-4);
+    padding: var(--espacio-4);
+    border: 1px solid var(--c-rosa-borde-hover);
+    border-radius: var(--radio-full);
+    background: color-mix(in srgb, var(--c-fondo) 88%, transparent);
+    color: var(--c-texto);
+    font-family: var(--fuente-texto);
+    font-size: clamp(12px, var(--fs-detalle), 14px);
+    line-height: 1.2;
+}
+
+.project-media[data-gallery-ready] .project-gallery-controls {
+    display: flex;
+}
+
+.project-gallery-controls button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    font-family: var(--fuente-titulo);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.project-gallery-controls button:hover {
+    background: var(--c-rosa-tinte-hover);
+}
+
+.project-gallery-count {
+    min-width: 3.5ch;
+    text-align: center;
+    white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+    .project-gallery-controls {
+        right: min(var(--espacio-8), 4px);
+    }
+}
+
+/* El nombre pisa el borde inferior; la descripción queda libre para leerse. */
+.project-card > .project-title {
+    position: relative;
+    align-self: flex-start;
+    max-width: calc(100% - var(--espacio-32));
+    margin-top: calc(var(--espacio-32) * -1);
+    margin-left: var(--espacio-32);
+    padding: var(--espacio-16);
+    border-radius: var(--radio-sm);
+    background: var(--c-panel);
+}
+
+/* Un solo acento saturado dentro del mural: la pieza central. */
+.project-card:nth-child(2) > .project-title {
+    background: var(--c-rosa-calmo);
+    color: var(--c-sobre-rosa);
+    transform: rotate(2deg);
+}
+
+.project-card > .project-description {
+    max-width: 36ch;
+    margin-top: var(--espacio-16);
+    margin-left: var(--espacio-32);
+    color: var(--c-gris-lectura);
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+}
+
+.project-card > a.project-visit {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    min-width: 0;
+    max-width: calc(100% - var(--espacio-32));
+    min-height: 44px;
+    margin-top: var(--espacio-16);
+    margin-left: var(--espacio-32);
+    padding: var(--espacio-8) var(--espacio-16);
+    border: var(--grosor-linea) solid var(--c-rosa-borde-hover);
+    border-radius: var(--radio-full);
+    background: var(--c-rosa-velo);
+    color: var(--c-rosa-calmo);
+    font-family: var(--fuente-texto);
+    font-size: var(--fs-cuerpo);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color var(--duración-rapida) var(--curva-interaccion),
+                border-color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.project-card > a.project-visit:hover {
+    border-color: var(--c-rosa-calmo);
+    background: var(--c-rosa-tinte-hover);
+}
+
+.projects > .call-button {
+    justify-self: end;
+}
+
+/* ./home/ventas.css */
+/*
+ * Preguntas y respuestas sin tarjetas: el recorrido diagonal acompaña la
+ * conversación sobre problemas reales, no una grilla de productos.
+ */
+.ventas {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--espacio-32) var(--espacio-16);
+    margin-block: var(--espacio-64);
+    padding-block: var(--espacio-64);
+    padding-inline: clamp(var(--espacio-16), 4vw, var(--espacio-64));
+    background: var(--c-lavanda);
+    color: var(--c-tinta);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--espacio-64)), calc(100% - var(--espacio-64)) 100%, 0 100%);
+}
+
+.ventas::before {
+    position: absolute;
+    z-index: -1;
+    top: -.65em;
+    right: -.03em;
+    content: '/';
+    color: color-mix(in srgb, var(--c-rosa-vivo) 16%, transparent);
+    font-family: var(--fuente-titulo);
+    font-size: clamp(12rem, 36vw, 34rem);
+    font-weight: 800;
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* La barra responde al avance del scroll; texto y panel nunca se ocultan. */
+@supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .ventas {
+            view-timeline-name: --cartel;
+            view-timeline-axis: block;
+        }
+
+        .ventas::before {
+            animation: trazar-barra linear both;
+            animation-timeline: --cartel;
+            animation-range: entry 0% entry 100%;
+        }
+    }
+}
+
+@keyframes trazar-barra {
+    from { transform: translate(18%, -12%) rotate(14deg); opacity: .2; }
+    to { transform: none; opacity: 1; }
+}
+
+.ventas > .ventas-heading--benefits {
+    grid-column: 1 / span 9;
+    grid-row: 1;
+    max-width: 18ch;
+}
+
+.ventas > .ventas-copy--benefits {
+    grid-column: 4 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--espacio-32);
+}
+
+.ventas > .ventas-heading--audience {
+    grid-column: 2 / span 8;
+    grid-row: 3;
+    max-width: 25ch;
+    margin-top: var(--espacio-32);
+    color: #692657;
+    font-size: var(--fs-titulo-proyectos);
+}
+
+.ventas > .ventas-copy--audience {
+    grid-column: 5 / -1;
+    grid-row: 4;
+}
+
+.ventas-copy p {
+    max-width: 54ch;
+    color: #3f314b;
+    font-size: var(--fs-educacion-lectura);
+    line-height: 1.6;
+}
+
+.ventas > .ventas-copy--benefits p:first-child,
+.ventas > .ventas-copy--audience p {
+    color: var(--c-tinta);
+    font-weight: 500;
+}
+
+/* ./home/education.css */
+/*
+ * Trayectoria en tres ritmos: inicio en superficie, aprendizaje a página
+ * abierta y futuro como cierre. Sin alterar una palabra del relato.
+ */
+.education {
+    display: grid;
+    grid-template-columns: minmax(0, .68fr) minmax(0, 1.32fr);
+    gap: var(--espacio-32) var(--espacio-64);
+    padding-block: var(--espacio-64);
+}
+
+.education > .education-heading {
+    max-width: 18ch;
+    padding-top: var(--espacio-32);
+    border-top: var(--grosor-linea) solid var(--c-linea);
+}
+
+.education > .education-story {
+    display: grid;
+    align-content: center;
+    gap: var(--espacio-32);
+    min-width: 0;
+    color: var(--c-gris-lectura);
+}
+
+.education > .education-story p {
+    max-width: 58ch;
+}
+
+/* El origen se lee como una nota personal, no como un bloque genérico. */
+.education > .education-story--origin {
+    padding: var(--espacio-32);
+    border-left: var(--espacio-4) solid var(--c-rosa-calmo);
+    border-radius: var(--radio-md);
+    background: var(--c-rosa-velo);
+}
+
+.education > .education-story--origin p:first-child {
+    color: var(--c-blanco);
+    font-size: var(--fs-educacion-lectura);
+    font-weight: 600;
+    line-height: 1.55;
+}
+
+.education > .education-story--origin p:nth-child(2) {
+    font-size: var(--fs-lead);
+}
+
+/* La experiencia con clientes merece el énfasis de una idea central. */
+.education > .education-story--learning,
+.education > .education-story--future {
+    padding-block: var(--espacio-32);
+    border-top: var(--grosor-linea) solid var(--c-linea);
+}
+
+.education > .education-story--learning p {
+    max-width: 52ch;
+    padding-left: var(--espacio-32);
+    border-left: var(--espacio-4) solid var(--c-rosa-calmo);
+    color: var(--c-blanco);
+    font-size: var(--fs-educacion-lectura);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.education > .education-heading--future {
+    color: var(--c-rosa-calmo);
+}
+
+.education > .education-story--future p {
+    color: var(--c-gris-lectura);
+    font-size: var(--fs-lead);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* ./home/call.css */
+/* Del primer contacto al negocio abierto: tres momentos, no tres tarjetas. */
+.call {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--espacio-64) var(--espacio-16);
+    margin-top: var(--espacio-64);
+    padding-block: var(--espacio-64);
+    padding-inline: clamp(var(--espacio-16), 4vw, var(--espacio-64));
+    border-radius: var(--radio-md) clamp(3rem, 8vw, 7rem) var(--radio-md) var(--radio-md);
+    background: var(--c-rosa-aire);
+    color: var(--c-tinta);
+}
+
+.call > .call-heading {
+    grid-column: 1 / -1;
+    max-width: 17ch;
+    font-size: clamp(2.75rem, 5.6vw, 5.5rem);
+    line-height: 1.05;
+}
+
+.call-steps {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 4fr);
+    align-items: start;
+    gap: var(--espacio-16);
+    min-width: 0;
+}
+
+.call-step {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    font-size: clamp(1rem, 1.7vw, 1.4rem);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.call-step img {
+    width: 100%;
+    object-fit: cover;
+    filter: saturate(.8);
+    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-tinta);
+    transform: rotate(-1.5deg);
+}
+
+.call-step--idea img {
+    transform: rotate(1.5deg);
+}
+
+.call-step--launch img {
+    transform: rotate(-.8deg);
+}
+
+.call-step span {
+    display: block;
+    margin-top: var(--espacio-16);
+}
+
+.call-step--contact {
+    margin-top: var(--espacio-64);
+}
+
+.call-step--contact img {
+    height: clamp(12rem, 19vw, 15rem);
+    object-position: center;
+}
+
+.call-step--idea img {
+    height: clamp(19rem, 40vw, 32rem);
+    object-position: center;
+}
+
+.call-step--launch {
+    margin-top: var(--espacio-32);
+}
+
+.call-step--launch img {
+    height: clamp(17rem, 30vw, 26rem);
+    object-position: 58% center;
+}
+
+.call-action {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--espacio-32);
+    min-width: 0;
+}
+
+.call-action p {
+    max-width: 35ch;
+    color: var(--c-tinta);
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+}
+
+.call-action .call-button {
+    flex: none;
+    min-height: 3.5rem;
+    padding: var(--espacio-16) var(--espacio-32);
+    border-radius: var(--radio-sm);
+    font-size: var(--fs-lead);
+    border-color: var(--c-tinta);
+    background: var(--c-tinta);
+    color: var(--c-texto);
+    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-texto);
+    transition: transform var(--duración-rapida) var(--curva-interaccion),
+                box-shadow var(--duración-rapida) var(--curva-interaccion),
+                background-color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.call-action .call-button:hover {
+    border-color: var(--c-tinta);
+    background: #4a2553;
+    box-shadow: var(--espacio-4) var(--espacio-4) 0 var(--c-texto);
+    transform: translate(var(--espacio-4), var(--espacio-4));
+}
+
+.call-action .call-button:focus-visible {
+    outline-color: var(--c-tinta);
+}
+
+/* ./home/footer.css */
+/* Cierre simple: identidad, redes y la última invitación siguen visibles. */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--espacio-32);
+    margin-top: var(--espacio-64);
+    padding-block: var(--espacio-32);
+    border-top: var(--grosor-linea) solid var(--c-linea);
+    color: var(--c-gris);
+    font-size: var(--fs-detalle);
+}
+
+.footer-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--espacio-16);
+}
+
+.footer-list a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espacio-8);
+    font-family: var(--fuente-texto);
+    transition: color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.footer-list a:not(.call-button) {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.footer-list a:hover {
+    color: var(--c-footer-hover);
+}
+
+.footer-list img {
+    width: 1.1rem;
+    height: 1.1rem;
+    filter: invert(1);
+    opacity: .72;
+    transition: opacity var(--duración-rapida) var(--curva-interaccion);
+}
+
+.footer-list a:hover img {
+    opacity: 1;
+}
+
+.footer-list .call-button {
+    min-height: 2.75rem;
+    padding-inline: var(--espacio-16);
+    background: transparent;
+    color: var(--c-rosa-calmo);
+    font-size: var(--fs-detalle);
+    transition: background-color var(--duración-rapida) var(--curva-interaccion),
+                border-color var(--duración-rapida) var(--curva-interaccion),
+                color var(--duración-rapida) var(--curva-interaccion);
+}
+
+.footer-list .call-button:hover {
+    background-color: var(--c-rosa-tinte-hover);
+    border-color: var(--c-rosa-borde-hover);
+    color: var(--c-rosa-hover);
+}
+
+/* ./basics/responsive.css */
+/* El contenido decide cuándo deja de caber; no hay anchos fijos de página. */
+@media (min-width: 881px) and (max-width: 1100px) {
+    .hero {
+        min-height: min(82svh, 48rem);
+    }
+}
+
+@media (max-width: 880px) {
+    .header {
+        align-items: flex-start;
+    }
+
+    .hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--espacio-32);
+        min-height: 0;
+    }
+
+    .hero-img {
+        justify-self: center;
+        width: min(100%, 40rem);
+        height: auto;
+        aspect-ratio: auto;
+        max-height: none;
+        margin-left: 0;
+    }
+
+    .hero-img img {
+        height: auto;
+    }
+}
+
+@media (max-width: 1100px) {
+    .call-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--espacio-32);
+    }
+
+    .call-step--contact {
+        margin-top: var(--espacio-64);
+    }
+
+    .call-step--launch {
+        grid-column: 1 / -1;
+        margin-top: 0;
+    }
+
+    .call-step--contact img,
+    .call-step--idea img,
+    .call-step--launch img {
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .call-step--idea img {
+        aspect-ratio: 3 / 4;
+    }
+
+    .call-step--launch img {
+        aspect-ratio: 16 / 7;
+    }
+}
+
+@media (max-width: 900px) {
+    .ventas > .ventas-copy--benefits {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        row-gap: var(--espacio-64);
+    }
+
+    .project-card,
+    .project-card:nth-child(3) {
+        grid-column: 1 / span 5;
+    }
+
+    .project-card:nth-child(2) {
+        grid-column: 2 / -1;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 720px) {
+    .projects {
+        gap: var(--espacio-32);
+    }
+
+    .ventas,
+    .education,
+    .call {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ventas > .ventas-heading--benefits,
+    .ventas > .ventas-heading--audience,
+    .ventas > .ventas-copy--benefits,
+    .ventas > .ventas-copy--audience,
+    .call > .call-heading,
+    .call ol,
+    .call-action {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .ventas > .ventas-heading--audience {
+        font-size: var(--fs-subtitulo);
+    }
+
+    .education > .education-heading {
+        padding-bottom: var(--espacio-16);
+    }
+
+    .education {
+        row-gap: 0;
+    }
+
+    .education > .education-story {
+        margin-bottom: var(--espacio-32);
+    }
+
+    .education > .education-story--learning,
+    .education > .education-story--future {
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    .education > .education-story--future {
+        margin-bottom: 0;
+    }
+
+    .call .call-steps {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--espacio-32);
+    }
+
+    .call-step--contact,
+    .call-step--launch {
+        grid-column: 1;
+        margin-top: 0;
+    }
+
+    .call-step--contact img {
+        aspect-ratio: 16 / 10;
+    }
+
+    .call-step--idea img {
+        aspect-ratio: 1;
+    }
+
+    .call-step--launch img {
+        aspect-ratio: 16 / 9;
+    }
+
+    .call-action {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--espacio-16);
+    }
+}
+
+@media (max-width: 520px) {
+    .education > .education-story--origin {
+        padding: var(--espacio-16);
+    }
+
+    .education > .education-story--learning p {
+        padding-left: var(--espacio-16);
+    }
+
+    .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: var(--espacio-64);
+    }
+
+    .project-card,
+    .project-card:nth-child(2),
+    .project-card:nth-child(3) {
+        grid-column: 1;
+        margin-top: 0;
+    }
+
+    .project-card > .project-title,
+    .project-card > .project-description,
+    .project-card > .project-visit {
+        margin-left: var(--espacio-16);
+    }
+
+    /* En anchos equivalentes a zoom alto, evitar titulares letra a letra. */
+    .hero-text > .hero-heading {
+        font-size: min(13vw, var(--fs-hero));
+    }
+
+    .projects-intro > .title-one {
+        font-size: min(13vw, var(--fs-titulo-proyectos));
+    }
+
+    .ventas > .ventas-heading--benefits {
+        font-size: min(13vw, var(--fs-titulo));
+    }
+
+    .education > .education-heading--origin {
+        font-size: min(13vw, var(--fs-educacion-titulo));
+    }
+
+    .project-card > .project-title {
+        font-size: min(12vw, var(--fs-proyecto));
+        max-width: calc(100% - var(--espacio-16));
+        margin-top: max(calc(var(--espacio-32) * -1), -32px);
+        padding: min(var(--espacio-16), 4vw);
+    }
+
+    main,
+    .header,
+    .footer {
+        width: min(calc(100% - var(--espacio-16) * 2), var(--ancho-max));
+    }
+
+    .header {
+        display: grid;
+        gap: var(--espacio-16);
+    }
+
+    .header-list {
+        justify-content: flex-start;
+        gap: var(--espacio-16);
+    }
+
+    .hero {
+        padding-top: var(--espacio-32);
+    }
+
+    .hero-img {
+        margin-top: calc(var(--espacio-32) * -1);
+    }
+
+    .projects > .call-button {
+        justify-self: stretch;
+    }
+
+    .call > .call-heading {
+        font-size: min(13vw, clamp(2.25rem, 9vw, 3rem));
+    }
+
+    .call-action .call-button {
+        padding-inline: min(var(--espacio-32), 5vw);
+        font-size: min(var(--fs-lead), 7vw);
+    }
+
+    .footer {
+        align-items: flex-start;
+    }
+
+    .footer-list li:last-child {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-text .call-button:hover {
+        box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-rosa-foto);
+        transform: rotate(-2deg);
+    }
+
+    .call-action .call-button:hover {
+        box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-texto);
+        transform: none;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
+
+/* ./home/atlas.css */
+/* Atlas de interferencias: una sola trayectoria visual, no un kit de tarjetas.
+   Esta capa compone las secciones existentes; el HTML conserva su orden y voz. */
+:root {
+    --atlas-linea: color-mix(in srgb, var(--c-lavanda) 22%, transparent);
+}
+
+.header {
+    position: relative;
+    padding-block: var(--espacio-32);
+    border-bottom-color: var(--atlas-linea);
+}
+
+.header::after {
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    width: clamp(3rem, 14vw, 11rem);
+    height: 3px;
+    background: var(--c-rosa-vivo);
+    content: '';
+}
+
+.header-brand {
+    font-size: clamp(1.5rem, 2.4vw, 2.5rem);
+}
+
+.hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--espacio-16);
+    min-height: min(92svh, 59rem);
+    margin-bottom: 0;
+    padding-block: clamp(4rem, 9vw, 9rem);
+}
+
+.hero::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0 0 3%;
+    background: repeating-radial-gradient(ellipse 49% 57% at 72% 50%,
+        transparent 0 2.25rem,
+        color-mix(in srgb, var(--c-rosa-aire) 23%, transparent) calc(2.25rem + 1px) calc(2.25rem + 2px),
+        transparent calc(2.25rem + 3px) 4.75rem);
+    mask-image: radial-gradient(ellipse 57% 65% at 72% 50%, black 12%, transparent 95%);
+    content: '';
+    pointer-events: none;
+}
+
+.hero-text {
+    z-index: 2;
+    grid-column: 1 / span 8;
+    grid-row: 1;
+    align-self: center;
+}
+
+.hero-text > .hero-heading {
+    max-width: 9.3ch;
+    font-size: clamp(3.5rem, 7.7vw, 8.2rem);
+    font-weight: 800;
+    letter-spacing: -.095em;
+    line-height: .94;
+    text-wrap: balance;
+}
+
+.hero-heading span {
+    display: block;
+}
+
+.hero-heading span:nth-child(2) {
+    padding-left: clamp(0px, 5vw, 4rem);
+}
+
+.hero-heading span:nth-child(3) {
+    padding-left: clamp(0px, 2vw, 2rem);
+}
+
+.hero-text > p:nth-child(2) {
+    max-width: 23ch;
+    margin-top: var(--espacio-32);
+    color: var(--c-rosa-aire);
+}
+
+.hero-text > p:nth-child(3) {
+    max-width: 28ch;
+    color: var(--c-blanco);
+}
+
+.hero-img {
+    grid-column: 7 / -1;
+    grid-row: 1;
+    align-self: center;
+    width: 100%;
+    max-height: min(74svh, 51rem);
+    margin-left: 0;
+    mask-image: radial-gradient(ellipse 85% 90% at 50% 5%, black 58%, transparent 100%);
+}
+
+.hero-img::before {
+    inset: 5% 0 3%;
+    background: linear-gradient(140deg, var(--c-tinta), var(--c-rosa-foto) 72%, var(--c-rosa-aire));
+    clip-path: polygon(20% 0, 86% 4%, 100% 39%, 82% 95%, 28% 100%, 0 68%, 6% 20%);
+    mask-image: none;
+}
+
+.hero-img img {
+    filter: drop-shadow(0 1rem 2.5rem var(--c-sombra-foto));
+}
+
+.hero-text .call-button {
+    border-radius: 0;
+    background: var(--c-rosa-aire);
+    box-shadow: .45rem .45rem 0 var(--c-rosa-vivo);
+    transform: none;
+}
+
+.hero-text .call-button:hover {
+    box-shadow: .2rem .2rem 0 var(--c-rosa-vivo);
+    transform: translate(.25rem, .25rem);
+}
+
+.projects {
+    gap: clamp(4rem, 9vw, 9rem);
+    padding-block: clamp(5rem, 10vw, 10rem);
+    border-top-color: var(--atlas-linea);
+}
+
+.projects-intro {
+    position: relative;
+    gap: var(--espacio-32);
+    padding-left: clamp(0px, 6vw, 6rem);
+}
+
+.projects-intro::before {
+    position: absolute;
+    top: .25em;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background: linear-gradient(var(--c-rosa-vivo), var(--c-lavanda), transparent);
+    content: '';
+}
+
+.projects-intro > .title-one {
+    max-width: 17ch;
+    font-size: clamp(3rem, 6.8vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: .98;
+}
+
+.projects-demo-note {
+    max-width: 58ch;
+    font-family: var(--fuente-texto);
+    font-size: clamp(.875rem, 1.2vw, .95rem);
+    line-height: 1.75;
+}
+
+.projects-grid {
+    row-gap: clamp(5rem, 10vw, 10rem);
+}
+
+.project-card::before {
+    display: none;
+}
+
+.project-card:nth-child(2) {
+    grid-column: 9 / -1;
+    margin-top: clamp(4rem, 10vw, 10rem);
+}
+
+.project-card:nth-child(3) {
+    grid-column: 3 / span 8;
+}
+
+.project-media,
+.project-card:nth-child(2) .project-media,
+.project-card:nth-child(3) .project-media {
+    border-radius: 0;
+    transform: none;
+    transition: none;
+}
+
+.project-card:nth-child(1) .project-media {
+    clip-path: polygon(0 0, 97% 0, 100% 17%, 100% 91%, 93% 100%, 0 100%);
+}
+
+.project-card:nth-child(2) .project-media {
+    clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%, 0 13%);
+}
+
+.project-card:nth-child(3) .project-media {
+    clip-path: polygon(0 0, 100% 0, 100% 87%, 95% 100%, 0 100%);
+}
+
+.project-media::after {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    border-top: 2px solid var(--c-rosa-vivo);
+    content: '';
+    pointer-events: none;
+}
+
+.project-card:nth-child(2) .project-media::after {
+    border-color: var(--c-lavanda);
+}
+
+.project-card:nth-child(3) .project-media::after {
+    border-color: var(--c-rosa-aire);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .project-media[data-gallery-ready]:hover {
+        transform: none;
+    }
+}
+
+.project-card > .project-title,
+.project-card:nth-child(2) > .project-title {
+    max-width: 100%;
+    margin: var(--espacio-16) 0 0;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--c-blanco);
+    font-size: clamp(2rem, 4.3vw, 4.75rem);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: 1.08;
+    transform: none;
+}
+
+.project-card:nth-child(2) > .project-title {
+    color: var(--c-lavanda);
+}
+
+.project-card > .project-description,
+.project-card > a.project-visit {
+    margin-left: 0;
+}
+
+.project-card > a.project-visit {
+    border-radius: 0;
+    border-color: var(--c-rosa-calmo);
+    background: transparent;
+}
+
+.project-gallery-controls {
+    right: clamp(.5rem, 3vw, 2rem);
+    bottom: clamp(.5rem, 3vw, 2rem);
+    border-radius: 0;
+    background: color-mix(in srgb, var(--c-fondo) 94%, transparent);
+}
+
+.projects > .call-button {
+    justify-self: start;
+    margin-left: clamp(0px, 20vw, 19rem);
+    border-radius: 0;
+    background: var(--c-lavanda);
+}
+
+.ventas {
+    gap: clamp(2rem, 5vw, 5rem) var(--espacio-16);
+    margin-block: 0;
+    padding: clamp(5rem, 10vw, 10rem) clamp(2rem, 7vw, 8rem);
+    clip-path: polygon(0 4%, 100% 0, 98% 100%, 3% 96%);
+}
+
+.ventas::before {
+    top: -.32em;
+    right: .02em;
+    color: color-mix(in srgb, var(--c-rosa-vivo) 14%, transparent);
+    font-size: clamp(18rem, 53vw, 48rem);
+    animation: none !important;
+}
+
+.ventas > .ventas-heading--benefits {
+    grid-column: 1 / span 10;
+    max-width: 16ch;
+    font-size: clamp(3rem, 6.3vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: .99;
+}
+
+.ventas > .ventas-copy--benefits {
+    grid-column: 5 / -1;
+}
+
+.ventas > .ventas-heading--audience {
+    grid-column: 1 / span 9;
+    max-width: 20ch;
+    margin-top: clamp(2rem, 6vw, 6rem);
+    color: var(--c-tinta);
+    font-size: clamp(2.5rem, 4vw, 5rem);
+    letter-spacing: -.06em;
+}
+
+.ventas > .ventas-copy--audience {
+    grid-column: 6 / -1;
+}
+
+.education {
+    position: relative;
+    isolation: isolate;
+    gap: clamp(3rem, 8vw, 8rem) clamp(2rem, 5vw, 6rem);
+    padding-block: clamp(7rem, 13vw, 14rem);
+}
+
+.education::before {
+    position: absolute;
+    z-index: -1;
+    top: 2%;
+    right: 0;
+    width: min(75vw, 60rem);
+    aspect-ratio: 1;
+    background: repeating-radial-gradient(circle,
+        transparent 0 3.5rem,
+        color-mix(in srgb, var(--c-lavanda) 22%, transparent) calc(3.5rem + 1px) calc(3.5rem + 2px),
+        transparent calc(3.5rem + 3px) 6rem);
+    mask-image: radial-gradient(circle, black 20%, transparent 74%);
+    content: '';
+    pointer-events: none;
+}
+
+.education > .education-heading {
+    max-width: 16ch;
+    padding-top: var(--espacio-16);
+    border-top-color: var(--c-rosa-calmo);
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -.065em;
+    line-height: 1;
+}
+
+.education > .education-story--origin {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.education > .education-story--origin p:first-child {
+    max-width: 42ch;
+    font-size: clamp(1.3rem, 2.2vw, 2.2rem);
+    font-weight: 500;
+}
+
+.education > .education-story--learning,
+.education > .education-story--future {
+    border-top-color: var(--atlas-linea);
+}
+
+.education > .education-story--learning p {
+    padding-left: 0;
+    border-left: 0;
+}
+
+.education > .education-heading--future {
+    color: var(--c-rosa-aire);
+}
+
+.call {
+    gap: clamp(3rem, 7vw, 7rem) var(--espacio-16);
+    margin-top: 0;
+    padding: clamp(4rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
+    border-radius: 0;
+    background: var(--c-tinta);
+    color: var(--c-blanco);
+    clip-path: polygon(0 0, 100% 3%, 100% 100%, 0 97%);
+}
+
+.call > .call-heading {
+    max-width: 15ch;
+    font-size: clamp(3rem, 6.5vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: .98;
+}
+
+.call-step img,
+.call-step--idea img,
+.call-step--launch img {
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+}
+
+.call-step picture {
+    display: block;
+    width: 100%;
+}
+
+.call-step--contact img {
+    clip-path: polygon(0 0, 100% 0, 100% 83%, 83% 100%, 0 100%);
+}
+
+.call-step--idea img {
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%, 0 11%);
+}
+
+.call-step--launch img {
+    clip-path: polygon(0 0, 100% 0, 100% 86%, 94% 100%, 0 100%);
+}
+
+.call-step span {
+    padding-top: var(--espacio-16);
+    border-top: 1px solid var(--c-rosa-calmo);
+    color: var(--c-rosa-aire);
+    font-family: var(--fuente-texto);
+    font-size: clamp(.875rem, 1.3vw, 1rem);
+}
+
+.call-action {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.call-action p {
+    color: var(--c-blanco);
+}
+
+.call-action .call-button {
+    border-radius: 0;
+    border-color: var(--c-rosa-aire);
+    background: var(--c-rosa-aire);
+    color: var(--c-tinta);
+    box-shadow: .5rem .5rem 0 var(--c-rosa-vivo);
+}
+
+.call-action .call-button:hover {
+    border-color: var(--c-rosa-aire);
+    background: var(--c-rosa-aire);
+    box-shadow: .25rem .25rem 0 var(--c-rosa-vivo);
+}
+
+.call-action .call-button:focus-visible {
+    outline-color: var(--c-lavanda);
+}
+
+.footer {
+    margin-top: clamp(3rem, 8vw, 8rem);
+    border-top-color: var(--atlas-linea);
+}
+
+@media (max-width: 1100px) {
+    .projects-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .project-card,
+    .project-card:nth-child(3) {
+        grid-column: 1 / span 5;
+    }
+
+    .project-card:nth-child(2) {
+        grid-column: 2 / -1;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 880px) {
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 0;
+        min-height: 0;
+        padding-top: clamp(3rem, 9vw, 6rem);
+    }
+
+    .hero-text,
+    .hero-img {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .hero-text > .hero-heading {
+        max-width: 11ch;
+        font-size: clamp(3.4rem, 10vw, 6.8rem);
+    }
+
+    .hero-img {
+        justify-self: end;
+        width: min(90%, 38rem);
+        max-height: none;
+        margin-top: -2rem;
+    }
+
+    .hero::before {
+        inset: 25% 0 0;
+    }
+}
+
+@media (max-width: 720px) {
+    .ventas {
+        gap: var(--espacio-32);
+        padding-block: clamp(5rem, 13vw, 7rem);
+        clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 99%);
+    }
+
+    .ventas > .ventas-heading--benefits,
+    .ventas > .ventas-heading--audience,
+    .ventas > .ventas-copy--benefits,
+    .ventas > .ventas-copy--audience {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .ventas > .ventas-heading--benefits {
+        font-size: clamp(2.8rem, 9vw, 5rem);
+    }
+
+    .ventas > .ventas-heading--audience {
+        font-size: clamp(2.25rem, 7vw, 3.5rem);
+    }
+
+    .education {
+        gap: 0;
+    }
+
+    .education > .education-heading {
+        padding-bottom: var(--espacio-16);
+    }
+
+    .education > .education-story {
+        margin-bottom: clamp(4rem, 10vw, 6rem);
+    }
+
+    .call {
+        clip-path: polygon(0 0, 100% 1%, 100% 100%, 0 99%);
+    }
+}
+
+@media (max-width: 520px) {
+    .header {
+        padding-block: var(--espacio-16);
+    }
+
+    .hero {
+        padding-top: var(--espacio-64);
+    }
+
+    .hero-text > .hero-heading {
+        max-width: 10ch;
+        font-size: max(1.5rem, min(12vw, var(--fs-hero)));
+    }
+
+    .hero-heading span:nth-child(n) {
+        padding-left: 0;
+    }
+
+    .hero-text > p:nth-child(2) {
+        margin-top: var(--espacio-16);
+    }
+
+    .hero-img {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .projects {
+        gap: var(--espacio-64);
+    }
+
+    .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .projects-intro {
+        padding-left: var(--espacio-16);
+    }
+
+    .projects-intro > .title-one {
+        font-size: max(1.5rem, min(10vw, var(--fs-titulo-proyectos)));
+    }
+
+    .project-card,
+    .project-card:nth-child(2),
+    .project-card:nth-child(3) {
+        grid-column: 1;
+        margin-top: 0;
+    }
+
+    .project-card > .project-title,
+    .project-card > .project-description,
+    .project-card > .project-visit {
+        margin-left: 0;
+    }
+
+    .project-card > .project-title,
+    .project-card:nth-child(2) > .project-title {
+        font-size: max(1.5rem, min(11vw, var(--fs-proyecto)));
+        margin-top: var(--espacio-16);
+        padding: 0;
+    }
+
+    .projects > .call-button {
+        justify-self: stretch;
+        margin-left: 0;
+    }
+
+    .ventas,
+    .call {
+        padding-inline: var(--espacio-16);
+    }
+
+    .ventas > .ventas-heading--benefits,
+    .call > .call-heading {
+        font-size: max(1.5rem, min(11vw, var(--fs-titulo)));
+    }
+
+    .ventas > .ventas-heading--audience {
+        font-size: max(1.5rem, min(10vw, var(--fs-titulo-proyectos)));
+    }
+
+    .education > .education-heading {
+        font-size: max(1.5rem, min(10vw, var(--fs-educacion-titulo)));
+    }
+
+    .education > .education-story--origin {
+        padding: 0;
+    }
+
+    .education > .education-story--learning p {
+        padding-left: 0;
+    }
+
+    .call-action .call-button {
+        box-shadow: .35rem .35rem 0 var(--c-rosa-vivo);
+    }
+}
