@@ -91,18 +91,11 @@
 /* La barra entra detrás del retrato; la foto LCP nunca espera una animación. */
 @media (prefers-reduced-motion: no-preference) {
     .hero[data-animacion="entrada"] .hero-img::before {
-        animation: abrir-barra 850ms var(--curva-interaccion) both;
+        animation: aparecer-halo 650ms var(--curva-interaccion) both;
     }
 }
 
-@keyframes abrir-barra {
-    from {
-        clip-path: polygon(46% 0, 48% 4%, 52% 39%, 56% 95%, 49% 100%, 44% 68%, 45% 20%);
-        opacity: .25;
-    }
-
-    to {
-        clip-path: polygon(20% 0, 86% 4%, 100% 39%, 82% 95%, 28% 100%, 0 68%, 6% 20%);
-        opacity: 1;
-    }
+@keyframes aparecer-halo {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }

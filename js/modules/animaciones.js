@@ -4,6 +4,6 @@ export function iniciarHero(hero, movimientoReducido) {
 
     hero.dataset.animacion = 'entrada';
     barra.addEventListener('animationend', (evento) => {
-        if (evento.animationName === 'abrir-barra') delete hero.dataset.animacion;
+        if (evento.animationName === 'aparecer-halo') delete hero.dataset.animacion;
     }, { once: true });
 }

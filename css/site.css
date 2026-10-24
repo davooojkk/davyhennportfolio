@@ -488,20 +488,13 @@ body {
 /* La barra entra detrás del retrato; la foto LCP nunca espera una animación. */
 @media (prefers-reduced-motion: no-preference) {
     .hero[data-animacion="entrada"] .hero-img::before {
-        animation: abrir-barra 850ms var(--curva-interaccion) both;
+        animation: aparecer-halo 650ms var(--curva-interaccion) both;
     }
 }
 
-@keyframes abrir-barra {
-    from {
-        clip-path: polygon(46% 0, 48% 4%, 52% 39%, 56% 95%, 49% 100%, 44% 68%, 45% 20%);
-        opacity: .25;
-    }
-
-    to {
-        clip-path: polygon(20% 0, 86% 4%, 100% 39%, 82% 95%, 28% 100%, 0 68%, 6% 20%);
-        opacity: 1;
-    }
+@keyframes aparecer-halo {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* ./home/projects.css */
@@ -1474,19 +1467,12 @@ body {
     font-weight: 800;
     letter-spacing: -.095em;
     line-height: .94;
-    text-wrap: balance;
+    text-align: left;
+    text-wrap: wrap;
 }
 
 .hero-heading span {
     display: block;
-}
-
-.hero-heading span:nth-child(2) {
-    padding-left: clamp(0px, 5vw, 4rem);
-}
-
-.hero-heading span:nth-child(3) {
-    padding-left: clamp(0px, 2vw, 2rem);
 }
 
 .hero-text > p:nth-child(2) {
@@ -1511,10 +1497,18 @@ body {
 }
 
 .hero-img::before {
-    inset: 5% 0 3%;
-    background: linear-gradient(140deg, var(--c-tinta), var(--c-rosa-foto) 72%, var(--c-rosa-aire));
-    clip-path: polygon(20% 0, 86% 4%, 100% 39%, 82% 95%, 28% 100%, 0 68%, 6% 20%);
+    inset: 6% auto auto 50%;
+    width: 94%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        color-mix(in srgb, var(--c-rosa-calmo) 18%, transparent),
+        color-mix(in srgb, var(--c-rosa-calmo) 9%, transparent) 40%,
+        transparent 72%);
+    clip-path: none;
     mask-image: none;
+    transform: translateX(-50%);
 }
 
 .hero-img img {
@@ -1578,9 +1572,13 @@ body {
     display: none;
 }
 
+.project-card:nth-child(1) {
+    grid-column: 1 / span 5;
+}
+
 .project-card:nth-child(2) {
-    grid-column: 9 / -1;
-    margin-top: clamp(4rem, 10vw, 10rem);
+    grid-column: 6 / -1;
+    margin-top: clamp(4rem, 7vw, 7rem);
 }
 
 .project-card:nth-child(3) {
@@ -1600,7 +1598,7 @@ body {
 }
 
 .project-card:nth-child(2) .project-media {
-    clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%, 0 13%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 13% 100%, 0 87%);
 }
 
 .project-card:nth-child(3) .project-media {
@@ -1647,6 +1645,7 @@ body {
 
 .project-card:nth-child(2) > .project-title {
     color: var(--c-lavanda);
+    font-size: clamp(2.5rem, 5.5vw, 6rem);
 }
 
 .project-card > .project-description,
@@ -1739,13 +1738,13 @@ body {
 }
 
 .education > .education-heading {
-    max-width: 16ch;
+    max-width: none;
     padding-top: var(--espacio-16);
     border-top-color: var(--c-rosa-calmo);
-    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    font-size: clamp(1.25rem, 2.15vw, 2rem);
     font-weight: 800;
-    letter-spacing: -.065em;
-    line-height: 1;
+    letter-spacing: -.045em;
+    line-height: 1.15;
 }
 
 .education > .education-story--origin {
@@ -1959,10 +1958,6 @@ body {
         font-size: max(1.5rem, min(12vw, var(--fs-hero)));
     }
 
-    .hero-heading span:nth-child(n) {
-        padding-left: 0;
-    }
-
     .hero-text > p:nth-child(2) {
         margin-top: var(--espacio-16);
     }
@@ -1989,6 +1984,7 @@ body {
     }
 
     .project-card,
+    .project-card:nth-child(1),
     .project-card:nth-child(2),
     .project-card:nth-child(3) {
         grid-column: 1;
@@ -2028,7 +2024,7 @@ body {
     }
 
     .education > .education-heading {
-        font-size: max(1.5rem, min(10vw, var(--fs-educacion-titulo)));
+        font-size: max(1.25rem, min(6vw, 1.65rem));
     }
 
     .education > .education-story--origin {
