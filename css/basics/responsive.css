@@ -65,28 +65,9 @@
     .ventas > .ventas-copy--benefits {
         grid-template-columns: minmax(0, 1fr);
     }
-
-    .projects-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        row-gap: var(--espacio-64);
-    }
-
-    .project-card,
-    .project-card:nth-child(3) {
-        grid-column: 1 / span 5;
-    }
-
-    .project-card:nth-child(2) {
-        grid-column: 2 / -1;
-        margin-top: 0;
-    }
 }
 
 @media (max-width: 720px) {
-    .projects {
-        gap: var(--espacio-32);
-    }
-
     .ventas,
     .education,
     .call {
@@ -169,31 +150,9 @@
         padding-left: var(--espacio-16);
     }
 
-    .projects-grid {
-        grid-template-columns: minmax(0, 1fr);
-        row-gap: var(--espacio-64);
-    }
-
-    .project-card,
-    .project-card:nth-child(2),
-    .project-card:nth-child(3) {
-        grid-column: 1;
-        margin-top: 0;
-    }
-
-    .project-card > .project-title,
-    .project-card > .project-description,
-    .project-card > .project-visit {
-        margin-left: var(--espacio-16);
-    }
-
     /* En anchos equivalentes a zoom alto, evitar titulares letra a letra. */
     .hero-text > .hero-heading {
         font-size: min(13vw, var(--fs-hero));
-    }
-
-    .projects-intro > .title-one {
-        font-size: min(13vw, var(--fs-titulo-proyectos));
     }
 
     .ventas > .ventas-heading--benefits {
@@ -202,13 +161,6 @@
 
     .education > .education-heading--origin {
         font-size: min(13vw, var(--fs-educacion-titulo));
-    }
-
-    .project-card > .project-title {
-        font-size: min(12vw, var(--fs-proyecto));
-        max-width: calc(100% - var(--espacio-16));
-        margin-top: max(calc(var(--espacio-32) * -1), -32px);
-        padding: min(var(--espacio-16), 4vw);
     }
 
     main,
@@ -233,10 +185,6 @@
 
     .hero-img {
         margin-top: calc(var(--espacio-32) * -1);
-    }
-
-    .projects > .call-button {
-        justify-self: stretch;
     }
 
     .call > .call-heading {

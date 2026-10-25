@@ -487,99 +487,73 @@ body {
 }
 
 /* ./home/projects.css */
-/*
- * Mural de trabajos: tamaños y desplazamientos distintos en lugar de
- * tres filas iguales. El orden visual sigue el orden del HTML.
- */
+/* Los proyectos comparten una misma superficie: capturas y textos en filas,
+   sin planos, rotaciones ni siluetas superpuestas por cada caso. */
 .projects {
     position: relative;
     isolation: isolate;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     min-width: 0;
-    gap: var(--espacio-64);
-    padding-block: var(--espacio-64);
-    border-top: var(--grosor-linea) solid var(--c-linea);
+    gap: clamp(3rem, 6vw, 5rem);
+    padding-block: clamp(5rem, 9vw, 9rem);
+    border-top: var(--grosor-linea) solid var(--atlas-linea);
+}
+
+.projects::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0 calc(50% - 50vw);
+    background: linear-gradient(to bottom, transparent,
+        color-mix(in srgb, var(--c-rosa) 5%, transparent) 30% 70%, transparent);
+    content: '';
+    pointer-events: none;
 }
 
 .projects-intro {
     display: grid;
-    justify-items: start;
-    gap: var(--espacio-16);
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+    gap: clamp(2rem, 5vw, 5rem);
 }
 
 .projects-intro > .title-one {
-    max-width: 20ch;
-    line-height: 1.08;
+    max-width: 18ch;
+    padding-inline-start: .1em;
+    font-size: clamp(2.75rem, 5.5vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: 1;
 }
 
 .projects-demo-note {
-    max-width: 55ch;
+    max-width: 46ch;
+    padding-bottom: .3em;
     color: var(--c-gris-lectura);
-    font-size: var(--fs-cuerpo);
+    font-family: var(--fuente-texto);
+    font-size: clamp(.875rem, 1.2vw, .95rem);
+    line-height: 1.75;
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    align-items: start;
-    gap: var(--espacio-32) var(--espacio-16);
+    grid-template-columns: minmax(0, 1fr);
     min-width: 0;
-}
-
-/* Las piezas giradas y sus planos de color salen ligeramente de su columna.
-   Reservar espacio real entre ellas evita que se monten unas sobre otras. */
-@media (min-width: 901px) {
-    .projects-grid {
-        column-gap: calc(var(--espacio-32) + var(--espacio-16));
-    }
 }
 
 .project-card {
-    position: relative;
-    isolation: isolate;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+    grid-template-rows: minmax(0, 1fr) auto auto auto minmax(0, 1fr);
+    align-items: start;
+    column-gap: clamp(2rem, 6vw, 6rem);
     min-width: 0;
-    grid-column: 1 / span 7;
+    padding-block: clamp(3rem, 6vw, 6rem);
+    border-top: var(--grosor-linea) solid var(--atlas-linea);
 }
 
-/* Color visible detrás del recorte: cada foto parece una pieza del mural. */
-.project-card::before {
-    position: absolute;
-    z-index: -1;
-    top: var(--espacio-8);
-    left: var(--espacio-8);
-    width: calc(100% - var(--espacio-8));
-    aspect-ratio: 4 / 3;
-    border: var(--espacio-4) solid var(--c-rosa-calmo);
-    border-radius: var(--radio-sm);
-    background: color-mix(in srgb, var(--c-rosa-calmo) 24%, var(--c-pagina));
-    content: '';
-    transform: translate(var(--espacio-8), var(--espacio-8)) rotate(2deg);
-    pointer-events: none;
-}
-
-.project-card:nth-child(2)::before {
-    aspect-ratio: 1;
-    border-color: var(--c-rosa-niebla);
-    background: color-mix(in srgb, var(--c-rosa-niebla) 24%, var(--c-pagina));
-    transform: translate(calc(var(--espacio-8) * -1), var(--espacio-8)) rotate(-2deg);
-}
-
-.project-card:nth-child(3)::before {
-    aspect-ratio: 16 / 9;
-    border-color: var(--c-rosa-aire);
-    background: color-mix(in srgb, var(--c-rosa-aire) 24%, var(--c-pagina));
-}
-
-.project-card:nth-child(2) {
-    grid-column: 8 / -1;
-    margin-top: var(--espacio-64);
-}
-
-.project-card:nth-child(3) {
-    grid-column: 3 / span 8;
+.project-card:last-child {
+    border-bottom: var(--grosor-linea) solid var(--atlas-linea);
 }
 
 .project-media {
@@ -588,20 +562,20 @@ body {
     overflow: hidden;
     width: 100%;
     aspect-ratio: 4 / 3;
+    grid-column: 1;
+    grid-row: 1 / 6;
+    align-self: center;
+    border: var(--grosor-linea) solid var(--atlas-linea);
     border-radius: var(--radio-sm);
     background: var(--c-panel);
-    transform: rotate(-1.5deg);
-    transition: transform 420ms var(--curva-interaccion);
 }
 
 .project-card:nth-child(2) .project-media {
     aspect-ratio: 1;
-    transform: rotate(1.5deg);
 }
 
 .project-card:nth-child(3) .project-media {
     aspect-ratio: 16 / 9;
-    transform: rotate(-.8deg);
 }
 
 .project-media img {
@@ -613,7 +587,7 @@ body {
     visibility: hidden;
 }
 
-/* La primera foto queda visible incluso si JavaScript no llega a ejecutarse. */
+/* La primera captura se ve también sin JavaScript. */
 .project-media img.is-current,
 .project-media img.is-incoming,
 .project-media img.is-outgoing {
@@ -628,22 +602,16 @@ body {
     z-index: 2;
 }
 
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    .project-media[data-gallery-ready]:hover {
-        transform: rotate(0) scale(1.012);
-    }
-}
-
 .project-gallery-controls {
     position: absolute;
     z-index: 3;
     right: var(--espacio-16);
-    bottom: min(calc(var(--espacio-32) + var(--espacio-16)), 48px);
+    bottom: var(--espacio-16);
     display: none;
     align-items: center;
     gap: var(--espacio-4);
     padding: var(--espacio-4);
-    border: 1px solid var(--c-rosa-borde-hover);
+    border: var(--grosor-linea) solid var(--c-rosa-borde-hover);
     border-radius: var(--radio-full);
     background: color-mix(in srgb, var(--c-fondo) 88%, transparent);
     color: var(--c-texto);
@@ -674,35 +642,25 @@ body {
     white-space: nowrap;
 }
 
-@media (max-width: 520px) {
-    .project-gallery-controls {
-        right: min(var(--espacio-8), 4px);
-    }
-}
-
-/* El nombre pisa el borde inferior; la descripción queda libre para leerse. */
 .project-card > .project-title {
-    position: relative;
-    align-self: flex-start;
-    max-width: calc(100% - var(--espacio-32));
-    margin-top: calc(var(--espacio-32) * -1);
-    margin-left: var(--espacio-32);
-    padding: var(--espacio-16);
-    border-radius: var(--radio-sm);
-    background: var(--c-panel);
+    min-width: 0;
+    grid-column: 2;
+    grid-row: 2;
+    font-size: clamp(2rem, 3.5vw, 4.2rem);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: 1.08;
 }
 
-/* Un solo acento saturado dentro del mural: la pieza central. */
 .project-card:nth-child(2) > .project-title {
-    background: var(--c-rosa-calmo);
-    color: var(--c-sobre-rosa);
-    transform: rotate(2deg);
+    color: var(--c-rosa-aire);
 }
 
 .project-card > .project-description {
     max-width: 36ch;
+    grid-column: 2;
+    grid-row: 3;
     margin-top: var(--espacio-16);
-    margin-left: var(--espacio-32);
     color: var(--c-gris-lectura);
     font-size: var(--fs-lead);
     line-height: 1.55;
@@ -711,12 +669,13 @@ body {
 .project-card > a.project-visit {
     display: inline-flex;
     align-items: center;
-    align-self: flex-start;
+    justify-self: start;
     min-width: 0;
-    max-width: calc(100% - var(--espacio-32));
+    max-width: 100%;
     min-height: 44px;
-    margin-top: var(--espacio-16);
-    margin-left: var(--espacio-32);
+    grid-column: 2;
+    grid-row: 4;
+    margin-top: var(--espacio-32);
     padding: var(--espacio-8) var(--espacio-16);
     font-family: var(--fuente-texto);
     font-size: var(--fs-cuerpo);
@@ -725,7 +684,68 @@ body {
 }
 
 .projects > .call-button {
-    justify-self: end;
+    justify-self: start;
+}
+
+@media (max-width: 720px) {
+    .projects-intro {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--espacio-16);
+    }
+
+    .project-card {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .project-media {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .project-card > .project-title {
+        grid-column: 1;
+        grid-row: 2;
+        margin-top: var(--espacio-32);
+    }
+
+    .project-card > .project-description {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .project-card > a.project-visit {
+        grid-column: 1;
+        grid-row: 4;
+    }
+}
+
+@media (max-width: 520px) {
+    .projects {
+        gap: var(--espacio-32);
+    }
+
+    .projects-intro > .title-one {
+        font-size: max(1.5rem, min(10vw, var(--fs-titulo-proyectos)));
+    }
+
+    .project-card {
+        padding-block: var(--espacio-32);
+    }
+
+    .project-card > .project-title {
+        font-size: max(1.5rem, min(11vw, var(--fs-proyecto)));
+        margin-top: var(--espacio-16);
+    }
+
+    .project-gallery-controls {
+        right: var(--espacio-8);
+        bottom: var(--espacio-8);
+    }
+
+    .projects > .call-button {
+        justify-self: stretch;
+    }
 }
 
 /* ./home/ventas.css */
@@ -1138,28 +1158,9 @@ body {
     .ventas > .ventas-copy--benefits {
         grid-template-columns: minmax(0, 1fr);
     }
-
-    .projects-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-        row-gap: var(--espacio-64);
-    }
-
-    .project-card,
-    .project-card:nth-child(3) {
-        grid-column: 1 / span 5;
-    }
-
-    .project-card:nth-child(2) {
-        grid-column: 2 / -1;
-        margin-top: 0;
-    }
 }
 
 @media (max-width: 720px) {
-    .projects {
-        gap: var(--espacio-32);
-    }
-
     .ventas,
     .education,
     .call {
@@ -1242,31 +1243,9 @@ body {
         padding-left: var(--espacio-16);
     }
 
-    .projects-grid {
-        grid-template-columns: minmax(0, 1fr);
-        row-gap: var(--espacio-64);
-    }
-
-    .project-card,
-    .project-card:nth-child(2),
-    .project-card:nth-child(3) {
-        grid-column: 1;
-        margin-top: 0;
-    }
-
-    .project-card > .project-title,
-    .project-card > .project-description,
-    .project-card > .project-visit {
-        margin-left: var(--espacio-16);
-    }
-
     /* En anchos equivalentes a zoom alto, evitar titulares letra a letra. */
     .hero-text > .hero-heading {
         font-size: min(13vw, var(--fs-hero));
-    }
-
-    .projects-intro > .title-one {
-        font-size: min(13vw, var(--fs-titulo-proyectos));
     }
 
     .ventas > .ventas-heading--benefits {
@@ -1275,13 +1254,6 @@ body {
 
     .education > .education-heading--origin {
         font-size: min(13vw, var(--fs-educacion-titulo));
-    }
-
-    .project-card > .project-title {
-        font-size: min(12vw, var(--fs-proyecto));
-        max-width: calc(100% - var(--espacio-16));
-        margin-top: max(calc(var(--espacio-32) * -1), -32px);
-        padding: min(var(--espacio-16), 4vw);
     }
 
     main,
@@ -1306,10 +1278,6 @@ body {
 
     .hero-img {
         margin-top: calc(var(--espacio-32) * -1);
-    }
-
-    .projects > .call-button {
-        justify-self: stretch;
     }
 
     .call > .call-heading {
@@ -1448,143 +1416,6 @@ body {
 
 .hero-img img {
     filter: drop-shadow(0 1rem 2.5rem var(--c-sombra-foto));
-}
-
-.projects {
-    gap: clamp(4rem, 9vw, 9rem);
-    padding-block: clamp(5rem, 10vw, 10rem);
-    border-top-color: var(--atlas-linea);
-}
-
-.projects-intro {
-    position: relative;
-    gap: var(--espacio-32);
-    padding-left: clamp(0px, 6vw, 6rem);
-}
-
-.projects-intro::before {
-    position: absolute;
-    top: .25em;
-    bottom: 0;
-    left: 0;
-    width: 2px;
-    background: linear-gradient(var(--c-rosa-vivo), var(--c-rosa-niebla), transparent);
-    content: '';
-}
-
-.projects-intro > .title-one {
-    max-width: 17ch;
-    font-size: clamp(3rem, 6.8vw, 7rem);
-    font-weight: 800;
-    letter-spacing: -.075em;
-    line-height: .98;
-}
-
-.projects-demo-note {
-    max-width: 58ch;
-    font-family: var(--fuente-texto);
-    font-size: clamp(.875rem, 1.2vw, .95rem);
-    line-height: 1.75;
-}
-
-.projects-grid {
-    row-gap: clamp(5rem, 10vw, 10rem);
-}
-
-.project-card::before {
-    display: none;
-}
-
-.project-card:nth-child(1) {
-    grid-column: 1 / span 5;
-}
-
-.project-card:nth-child(2) {
-    grid-column: 6 / -1;
-    margin-top: clamp(4rem, 7vw, 7rem);
-}
-
-.project-card:nth-child(3) {
-    grid-column: 3 / span 8;
-}
-
-.project-media,
-.project-card:nth-child(2) .project-media,
-.project-card:nth-child(3) .project-media {
-    border-radius: 0;
-    transform: none;
-    transition: none;
-}
-
-.project-card:nth-child(1) .project-media {
-    clip-path: polygon(0 0, 97% 0, 100% 17%, 100% 91%, 93% 100%, 0 100%);
-}
-
-.project-card:nth-child(2) .project-media {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 13% 100%, 0 87%);
-}
-
-.project-card:nth-child(3) .project-media {
-    clip-path: polygon(0 0, 100% 0, 100% 87%, 95% 100%, 0 100%);
-}
-
-.project-media::after {
-    position: absolute;
-    z-index: 2;
-    inset: 0;
-    border-top: 2px solid var(--c-rosa-vivo);
-    content: '';
-    pointer-events: none;
-}
-
-.project-card:nth-child(2) .project-media::after {
-    border-color: var(--c-rosa-niebla);
-}
-
-.project-card:nth-child(3) .project-media::after {
-    border-color: var(--c-rosa-aire);
-}
-
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-    .project-media[data-gallery-ready]:hover {
-        transform: none;
-    }
-}
-
-.project-card > .project-title,
-.project-card:nth-child(2) > .project-title {
-    max-width: 100%;
-    margin: var(--espacio-16) 0 0;
-    padding: 0;
-    border-radius: 0;
-    background: transparent;
-    color: var(--c-blanco);
-    font-size: clamp(2rem, 4.3vw, 4.75rem);
-    font-weight: 800;
-    letter-spacing: -.075em;
-    line-height: 1.08;
-    transform: none;
-}
-
-.project-card:nth-child(2) > .project-title {
-    color: var(--c-rosa-niebla);
-    font-size: clamp(2.5rem, 5.5vw, 6rem);
-}
-
-.project-card > .project-description,
-.project-card > a.project-visit {
-    margin-left: 0;
-}
-
-.project-gallery-controls {
-    right: clamp(.5rem, 3vw, 2rem);
-    bottom: clamp(.5rem, 3vw, 2rem);
-    background: color-mix(in srgb, var(--c-fondo) 94%, transparent);
-}
-
-.projects > .call-button {
-    justify-self: start;
-    margin-left: clamp(0px, 20vw, 19rem);
 }
 
 .ventas {
@@ -1770,22 +1601,6 @@ body {
     border-top-color: var(--atlas-linea);
 }
 
-@media (max-width: 1100px) {
-    .projects-grid {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
-
-    .project-card,
-    .project-card:nth-child(3) {
-        grid-column: 1 / span 5;
-    }
-
-    .project-card:nth-child(2) {
-        grid-column: 2 / -1;
-        margin-top: 0;
-    }
-}
-
 @media (max-width: 880px) {
     .hero {
         grid-template-columns: 1fr;
@@ -1880,48 +1695,6 @@ body {
     .hero-img {
         width: 100%;
         margin-top: 0;
-    }
-
-    .projects {
-        gap: var(--espacio-64);
-    }
-
-    .projects-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .projects-intro {
-        padding-left: var(--espacio-16);
-    }
-
-    .projects-intro > .title-one {
-        font-size: max(1.5rem, min(10vw, var(--fs-titulo-proyectos)));
-    }
-
-    .project-card,
-    .project-card:nth-child(1),
-    .project-card:nth-child(2),
-    .project-card:nth-child(3) {
-        grid-column: 1;
-        margin-top: 0;
-    }
-
-    .project-card > .project-title,
-    .project-card > .project-description,
-    .project-card > .project-visit {
-        margin-left: 0;
-    }
-
-    .project-card > .project-title,
-    .project-card:nth-child(2) > .project-title {
-        font-size: max(1.5rem, min(11vw, var(--fs-proyecto)));
-        margin-top: var(--espacio-16);
-        padding: 0;
-    }
-
-    .projects > .call-button {
-        justify-self: stretch;
-        margin-left: 0;
     }
 
     .ventas,
