@@ -17,6 +17,10 @@
     --radio-boton: var(--radio-full);
     --grosor-linea: 1px;
 
+    /* Una altura y una difusión comunes para la profundidad de las imágenes. */
+    --sombra-desplazamiento: var(--espacio-16);
+    --sombra-difusion: var(--espacio-32);
+
     --duración-rapida: 240ms;
     --curva-interaccion: cubic-bezier(.22, 1, .36, 1);
 }

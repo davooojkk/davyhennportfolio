@@ -21,7 +21,11 @@
     --c-linea: color-mix(in srgb, var(--c-blanco) 10%, transparent);
     --c-rosa-velo: color-mix(in srgb, var(--c-rosa) 5%, var(--c-panel));
     --c-rosa-foto: color-mix(in srgb, var(--c-rosa-calmo) 42%, var(--c-pagina));
-    --c-sombra-foto: color-mix(in srgb, var(--c-rosa-calmo) 24%, transparent);
+    --c-sombra-base: color-mix(in srgb, var(--c-fondo) 65%, transparent);
+    --c-sombra-acento: color-mix(in srgb, var(--c-rosa-calmo) 20%, transparent);
+    --sombra-captura: 0 var(--sombra-desplazamiento) var(--sombra-difusion) var(--c-sombra-base),
+        0 var(--espacio-4) var(--espacio-16) var(--c-sombra-acento);
+    --sombra-retrato: drop-shadow(0 var(--sombra-desplazamiento) var(--sombra-difusion) var(--c-sombra-acento));
     --c-rosa-hover: color-mix(in srgb, var(--c-rosa-calmo) 85%, var(--c-texto));
     --c-rosa-tinte-hover: color-mix(in srgb, var(--c-rosa-calmo) 12%, var(--c-panel));
     --c-rosa-borde-hover: color-mix(in srgb, var(--c-rosa-calmo) 45%, var(--c-linea));

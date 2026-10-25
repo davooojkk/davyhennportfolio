@@ -9,6 +9,7 @@ export function registrarGalerias(movimientoReducido, punteroPreciso) {
         const contador = media.querySelector('.project-gallery-count');
         let indice = 0;
         let ocupada = false;
+        const pendientes = [];
         let temporizador;
         let animaciones = [];
 
@@ -40,29 +41,41 @@ export function registrarGalerias(movimientoReducido, punteroPreciso) {
             }, demora);
         }
 
+        function prepararFoto(foto) {
+            if (foto.dataset.src) {
+                foto.loading = 'eager';
+                foto.src = foto.dataset.src;
+                delete foto.dataset.src;
+            }
+            return foto.decode();
+        }
+
+        function desocupar() {
+            ocupada = false;
+            if (pendientes.length) void pasarCarta(pendientes.shift(), true);
+        }
+
         async function pasarCarta(direccion, manual) {
-            if (ocupada) return;
+            if (ocupada) {
+                // No perder un segundo toque mientras se decodifica o revela la foto.
+                if (manual && pendientes.length < 2) pendientes.push(direccion);
+                return;
+            }
 
             ocupada = true;
             const siguiente = (indice + direccion + fotos.length) % fotos.length;
             const saliente = fotos[indice];
             const entrante = fotos[siguiente];
-            // Las capturas secundarias solo se descargan al abrir cada carta.
-            if (entrante.dataset.src) {
-                entrante.src = entrante.dataset.src;
-                delete entrante.dataset.src;
-            }
-            entrante.loading = 'eager';
 
             try {
-                await entrante.decode();
+                await prepararFoto(entrante);
             } catch {
-                ocupada = false; // Una foto que no cargó nunca deja un hueco en la galería.
+                desocupar(); // Una foto que no cargó nunca deja un hueco en la galería.
                 return;
             }
 
             if (!manual && !puedeAvanzarSolo()) {
-                ocupada = false;
+                desocupar();
                 return;
             }
 
@@ -80,46 +93,53 @@ export function registrarGalerias(movimientoReducido, punteroPreciso) {
                 saliente.classList.add('is-outgoing');
                 entrante.classList.add('is-incoming');
 
-                const opciones = {
-                    duration: 650,
-                    easing: 'cubic-bezier(.22, 1, .36, 1)',
-                    fill: 'both',
-                };
-
                 animaciones = [
-                    saliente.animate([
-                        { transform: 'translateX(0) rotate(0deg)', opacity: 1 },
-                        { transform: `translateX(${direccion * -108}%) rotate(${direccion * -9}deg)`, opacity: .8 },
-                    ], opciones),
                     entrante.animate([
-                        { transform: `translateX(${direccion * 14}%) rotate(${direccion * 4}deg) scale(.97)`, opacity: .9 },
+                        { transform: `translateX(${direccion * 8}px)`, opacity: .72 },
                         { transform: 'none', opacity: 1 },
-                    ], opciones),
+                    ], { duration: 280, easing: 'ease-out', fill: 'both' }),
                 ];
+            } else {
+                saliente.classList.remove('is-current');
+                entrante.classList.add('is-current');
+                // El cambio sin animación y el número se pintan juntos.
+                if (document.visibilityState === 'visible') {
+                    await new Promise((resolve) => requestAnimationFrame(resolve));
+                }
+            }
 
+            // Imagen y contador quedan listos en el mismo frame, no al final del efecto.
+            indice = siguiente;
+            saliente.setAttribute('aria-hidden', 'true');
+            entrante.removeAttribute('aria-hidden');
+            contador.setAttribute('aria-live', manual ? 'polite' : 'off');
+            contador.textContent = `${indice + 1} / ${fotos.length}`;
+
+            if (animaciones.length) {
                 await Promise.allSettled(animaciones.map((animacion) => animacion.finished));
                 animaciones.forEach((animacion) => animacion.cancel());
                 animaciones = [];
             }
 
             saliente.classList.remove('is-current', 'is-outgoing');
-            saliente.setAttribute('aria-hidden', 'true');
             entrante.classList.remove('is-incoming');
             entrante.classList.add('is-current');
-            entrante.removeAttribute('aria-hidden');
-            indice = siguiente;
-            contador.setAttribute('aria-live', manual ? 'polite' : 'off');
-            contador.textContent = `${indice + 1} / ${fotos.length}`;
-            ocupada = false;
+            desocupar();
         }
 
         media.addEventListener('pointerenter', (evento) => {
-            if (evento.pointerType === 'mouse') programar(550);
+            if (evento.pointerType === 'mouse') {
+                void prepararFoto(fotos[(indice + 1) % fotos.length]).catch(() => {});
+                programar(550);
+            }
         });
         media.addEventListener('pointerleave', detener);
         controles.addEventListener('pointerenter', detener);
         controles.addEventListener('pointerleave', () => programar(2500));
-        media.addEventListener('focusin', detener);
+        media.addEventListener('focusin', () => {
+            detener();
+            void prepararFoto(fotos[(indice + 1) % fotos.length]).catch(() => {});
+        });
         media.addEventListener('focusout', () => programar(2500));
 
         for (const [selector, direccion] of [['.project-gallery-prev', -1], ['.project-gallery-next', 1]]) {

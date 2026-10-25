@@ -85,7 +85,6 @@
     width: 100%;
     max-height: min(74svh, 51rem);
     margin-left: 0;
-    mask-image: radial-gradient(ellipse 85% 90% at 50% 5%, black 58%, transparent 100%);
 }
 
 .hero-img::before {
@@ -101,10 +100,6 @@
     clip-path: none;
     mask-image: none;
     transform: translateX(-50%);
-}
-
-.hero-img img {
-    filter: drop-shadow(0 1rem 2.5rem var(--c-sombra-foto));
 }
 
 .ventas {
@@ -229,7 +224,6 @@
 .call-step--launch img {
     border-radius: 0;
     filter: saturate(.8);
-    box-shadow: none;
     transform: none;
     transition: filter 360ms var(--curva-interaccion),
                 transform 360ms var(--curva-interaccion);

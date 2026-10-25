@@ -79,6 +79,7 @@
     border: var(--grosor-linea) solid var(--atlas-linea);
     border-radius: var(--radio-sm);
     background: var(--c-panel);
+    box-shadow: var(--sombra-captura);
 }
 
 .project-card:nth-child(2) .project-media {
@@ -106,11 +107,11 @@
 }
 
 .project-media img.is-incoming {
-    z-index: 1;
+    z-index: 2;
 }
 
 .project-media img.is-outgoing {
-    z-index: 2;
+    z-index: 1;
 }
 
 .project-gallery-controls {

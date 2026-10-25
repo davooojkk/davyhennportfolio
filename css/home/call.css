@@ -41,7 +41,6 @@
     width: 100%;
     object-fit: cover;
     filter: saturate(.8);
-    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-tinta);
     transform: rotate(-1.5deg);
 }
 

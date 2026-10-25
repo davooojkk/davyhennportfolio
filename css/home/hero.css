@@ -47,9 +47,6 @@
     min-width: 0;
     margin-left: calc(var(--espacio-32) * -1);
     align-self: end;
-    /* Foto y plano de luz se apagan juntos: bordes inferiores redondeados,
-       sin transparentar la barra rosa a través de la campera. */
-    mask-image: radial-gradient(ellipse 85% 92% at 50% 8%, black 65%, transparent 100%);
 }
 
 .hero-img::before {
@@ -67,6 +64,8 @@
     display: block;
     width: 100%;
     height: 100%;
+    /* La sombra va fuera del recorte para no terminar en una línea arriba. */
+    filter: var(--sombra-retrato);
 }
 
 .hero-img img {
@@ -74,7 +73,7 @@
     height: 100%;
     object-fit: contain;
     object-position: center bottom;
-    filter: drop-shadow(0 var(--espacio-16) var(--espacio-32) var(--c-sombra-foto));
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
 
 /* La barra entra detrás del retrato; la foto LCP nunca espera una animación. */

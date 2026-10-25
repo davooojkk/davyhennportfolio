@@ -44,7 +44,11 @@
     --c-linea: color-mix(in srgb, var(--c-blanco) 10%, transparent);
     --c-rosa-velo: color-mix(in srgb, var(--c-rosa) 5%, var(--c-panel));
     --c-rosa-foto: color-mix(in srgb, var(--c-rosa-calmo) 42%, var(--c-pagina));
-    --c-sombra-foto: color-mix(in srgb, var(--c-rosa-calmo) 24%, transparent);
+    --c-sombra-base: color-mix(in srgb, var(--c-fondo) 65%, transparent);
+    --c-sombra-acento: color-mix(in srgb, var(--c-rosa-calmo) 20%, transparent);
+    --sombra-captura: 0 var(--sombra-desplazamiento) var(--sombra-difusion) var(--c-sombra-base),
+        0 var(--espacio-4) var(--espacio-16) var(--c-sombra-acento);
+    --sombra-retrato: drop-shadow(0 var(--sombra-desplazamiento) var(--sombra-difusion) var(--c-sombra-acento));
     --c-rosa-hover: color-mix(in srgb, var(--c-rosa-calmo) 85%, var(--c-texto));
     --c-rosa-tinte-hover: color-mix(in srgb, var(--c-rosa-calmo) 12%, var(--c-panel));
     --c-rosa-borde-hover: color-mix(in srgb, var(--c-rosa-calmo) 45%, var(--c-linea));
@@ -76,6 +80,10 @@
     --radio-full: 100vmax;
     --radio-boton: var(--radio-full);
     --grosor-linea: 1px;
+
+    /* Una altura y una difusión comunes para la profundidad de las imágenes. */
+    --sombra-desplazamiento: var(--espacio-16);
+    --sombra-difusion: var(--espacio-32);
 
     --duración-rapida: 240ms;
     --curva-interaccion: cubic-bezier(.22, 1, .36, 1);
@@ -444,9 +452,6 @@ body {
     min-width: 0;
     margin-left: calc(var(--espacio-32) * -1);
     align-self: end;
-    /* Foto y plano de luz se apagan juntos: bordes inferiores redondeados,
-       sin transparentar la barra rosa a través de la campera. */
-    mask-image: radial-gradient(ellipse 85% 92% at 50% 8%, black 65%, transparent 100%);
 }
 
 .hero-img::before {
@@ -464,6 +469,8 @@ body {
     display: block;
     width: 100%;
     height: 100%;
+    /* La sombra va fuera del recorte para no terminar en una línea arriba. */
+    filter: var(--sombra-retrato);
 }
 
 .hero-img img {
@@ -471,7 +478,7 @@ body {
     height: 100%;
     object-fit: contain;
     object-position: center bottom;
-    filter: drop-shadow(0 var(--espacio-16) var(--espacio-32) var(--c-sombra-foto));
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
 
 /* La barra entra detrás del retrato; la foto LCP nunca espera una animación. */
@@ -568,6 +575,7 @@ body {
     border: var(--grosor-linea) solid var(--atlas-linea);
     border-radius: var(--radio-sm);
     background: var(--c-panel);
+    box-shadow: var(--sombra-captura);
 }
 
 .project-card:nth-child(2) .project-media {
@@ -595,11 +603,11 @@ body {
 }
 
 .project-media img.is-incoming {
-    z-index: 1;
+    z-index: 2;
 }
 
 .project-media img.is-outgoing {
-    z-index: 2;
+    z-index: 1;
 }
 
 .project-gallery-controls {
@@ -965,7 +973,6 @@ body {
     width: 100%;
     object-fit: cover;
     filter: saturate(.8);
-    box-shadow: var(--espacio-8) var(--espacio-8) 0 var(--c-tinta);
     transform: rotate(-1.5deg);
 }
 
@@ -1396,7 +1403,6 @@ body {
     width: 100%;
     max-height: min(74svh, 51rem);
     margin-left: 0;
-    mask-image: radial-gradient(ellipse 85% 90% at 50% 5%, black 58%, transparent 100%);
 }
 
 .hero-img::before {
@@ -1412,10 +1418,6 @@ body {
     clip-path: none;
     mask-image: none;
     transform: translateX(-50%);
-}
-
-.hero-img img {
-    filter: drop-shadow(0 1rem 2.5rem var(--c-sombra-foto));
 }
 
 .ventas {
@@ -1540,7 +1542,6 @@ body {
 .call-step--launch img {
     border-radius: 0;
     filter: saturate(.8);
-    box-shadow: none;
     transform: none;
     transition: filter 360ms var(--curva-interaccion),
                 transform 360ms var(--curva-interaccion);
