@@ -106,9 +106,13 @@ body {
     min-width: 0;
     margin: 0;
     background: var(--c-pagina);
-    /* El PNG ya es translúcido: repetirlo a escala nativa mantiene
-       el carbón de la marca visible entre las curvas de nivel. */
+    /* Textura translúcida repetida a escala nativa; PNG como respaldo
+       para navegadores sin AVIF. */
     background-image: url('../imgs/sources/cartographer.png');
+    background-image: image-set(
+        url('../imgs/sources/cartographer.avif') type('image/avif'),
+        url('../imgs/sources/cartographer.png') type('image/png')
+    );
     background-repeat: repeat;
     color: var(--c-blanco);
     -webkit-font-smoothing: antialiased;
